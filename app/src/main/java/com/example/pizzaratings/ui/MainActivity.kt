@@ -1,17 +1,22 @@
-package com.example.pizzaratings
+package com.example.pizzaratings.ui
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.pizzaratings.R
 import com.example.pizzaratings.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
   private lateinit var binding: ActivityMainBinding
+  private val mainActivityViewModel: MainActivityViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -26,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     // menu should be considered as top level destinations.
     val appBarConfiguration = AppBarConfiguration(
         setOf(
-            R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+          R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
         )
     )
     setupActionBarWithNavController(navController, appBarConfiguration)
