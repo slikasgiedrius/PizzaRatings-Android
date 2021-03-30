@@ -1,4 +1,4 @@
-package com.example.pizzaratings.ui.notifications
+package com.example.pizzaratings.ui.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,10 +7,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class NotificationsViewModel @Inject constructor() : ViewModel() {
+class DashboardFragmentViewModel @Inject constructor() : ViewModel() {
 
   private val _text = MutableLiveData<String>().apply {
-    value = "This is notifications Fragment"
+    value = "This is dashboard Fragment"
   }
   val text: LiveData<String> = _text
+
 }

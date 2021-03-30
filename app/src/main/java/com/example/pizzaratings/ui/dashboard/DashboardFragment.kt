@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DashboardFragment : Fragment() {
 
-  private lateinit var viewModel: DashboardViewModel
+  private lateinit var viewModel: DashboardFragmentViewModel
 
   private var _binding: FragmentDashboardBinding? = null
   private val binding get() = _binding!!
@@ -29,7 +29,7 @@ class DashboardFragment : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    viewModel = ViewModelProvider(requireActivity()).get(DashboardViewModel::class.java)
+    viewModel = ViewModelProvider(requireActivity()).get(DashboardFragmentViewModel::class.java)
 
     handleObservers()
     setUpViews()

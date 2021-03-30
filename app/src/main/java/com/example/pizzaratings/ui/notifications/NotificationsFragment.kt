@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class NotificationsFragment : Fragment() {
 
-  private lateinit var viewModel: NotificationsViewModel
+  private lateinit var viewModel: NotificationsFragmentViewModel
 
   private var _binding: FragmentNotificationsBinding? = null
   private val binding get() = _binding!!
@@ -29,7 +29,7 @@ class NotificationsFragment : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    viewModel = ViewModelProvider(requireActivity()).get(NotificationsViewModel::class.java)
+    viewModel = ViewModelProvider(requireActivity()).get(NotificationsFragmentViewModel::class.java)
 
     handleObservers()
     setUpViews()

@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-  private lateinit var viewModel: HomeViewModel
+  private lateinit var viewModel: HomeFragmentViewModel
 
   private var _binding: FragmentHomeBinding? = null
   private val binding get() = _binding!!
@@ -28,7 +28,7 @@ class HomeFragment : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    viewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java)
+    viewModel = ViewModelProvider(requireActivity()).get(HomeFragmentViewModel::class.java)
 
     handleObservers()
     setUpViews()
