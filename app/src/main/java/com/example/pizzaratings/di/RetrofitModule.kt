@@ -23,9 +23,9 @@ object RetrofitModule {
 
   @Provides
   @Singleton
-  fun provideOkHttpClient() = if (BuildConfig.DEBUG) {
+  fun provideOkHttpClient(): OkHttpClient = if (BuildConfig.DEBUG) {
     val loggingInterceptor = HttpLoggingInterceptor()
-    loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+    loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
     OkHttpClient.Builder()
       .addInterceptor(loggingInterceptor)
       .build()
@@ -44,7 +44,7 @@ object RetrofitModule {
 
   @Provides
   @Singleton
-  fun provideApiService(retrofit: Retrofit) = retrofit.create(ApiService::class.java)
+  fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
 
   @Provides
   @Singleton
