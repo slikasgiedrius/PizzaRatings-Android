@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.giedrius.slikas.pizzaratings.api.UserRepository
-import com.giedrius.slikas.pizzaratings.api.User
+import com.giedrius.slikas.pizzaratings.data.repository.UserRepository
+import com.giedrius.slikas.pizzaratings.data.model.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

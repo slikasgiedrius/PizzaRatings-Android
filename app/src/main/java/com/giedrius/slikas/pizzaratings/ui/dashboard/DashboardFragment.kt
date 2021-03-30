@@ -41,12 +41,16 @@ class DashboardFragment : Fragment() {
   }
 
   private fun handleObservers() {
-    //TODO use VM here
+    viewModel.text.observe(viewLifecycleOwner) {
+      binding.textDashboard.text = it
+    }
+    viewModel.userRepository.onUsersDownloaded.observe(viewLifecycleOwner) {
+      binding.textDashboard.text = it.toString()
+    }
   }
 
   private fun setUpViews() {
-    viewModel.text.observe(viewLifecycleOwner, Observer {
-      binding.textDashboard.text = it
-    })
+    binding.get.setOnClickListener { viewModel.userRepository.getUsers() }
+    binding.save.setOnClickListener { viewModel.userRepository.saveUser() }
   }
 }

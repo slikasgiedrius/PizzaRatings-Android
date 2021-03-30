@@ -1,6 +1,6 @@
-package com.giedrius.slikas.pizzaratings.api.service
+package com.giedrius.slikas.pizzaratings.data.service
 
-import com.giedrius.slikas.pizzaratings.api.model.User
+import com.giedrius.slikas.pizzaratings.data.model.User
 import retrofit2.Response
 import javax.inject.Inject
 

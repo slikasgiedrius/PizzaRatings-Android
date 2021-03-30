@@ -1,7 +1,7 @@
 package com.giedrius.slikas.pizzaratings.di
 
 import com.giedrius.slikas.pizzaratings.BuildConfig
-import com.giedrius.slikas.pizzaratings.api.service.UserService
+import com.giedrius.slikas.pizzaratings.data.service.UserService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
