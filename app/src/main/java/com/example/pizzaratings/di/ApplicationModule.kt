@@ -17,6 +17,7 @@ import javax.inject.Singleton
 object ApplicationModule {
 
   @Provides
+  @Singleton
   fun providePizzaRatingsPreferences(@ApplicationContext appContext: Context) =
     PizzaRatingsPreferences(appContext)
 }

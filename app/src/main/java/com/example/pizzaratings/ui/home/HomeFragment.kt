@@ -16,11 +16,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-  private val homeViewModel: HomeViewModel by viewModels()
-  private var _binding: FragmentHomeBinding? = null
+  private lateinit var homeViewModel: HomeViewModel
 
-  // This property is only valid between onCreateView and
-  // onDestroyView.
+  private var _binding: FragmentHomeBinding? = null
   private val binding get() = _binding!!
 
   override fun onCreateView(
@@ -31,15 +29,30 @@ class HomeFragment : Fragment() {
     _binding = FragmentHomeBinding.inflate(inflater, container, false)
     val root: View = binding.root
 
-    val textView: TextView = binding.textHome
-    homeViewModel.text.observe(viewLifecycleOwner, Observer {
-      textView.text = it
-    })
     return root
+  }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    homeViewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java)
+    handleObservers()
+    setUpViews()
   }
 
   override fun onDestroyView() {
     super.onDestroyView()
     _binding = null
+  }
+
+  private fun handleObservers() {
+    homeViewModel.users.observe(viewLifecycleOwner, {
+      binding.textHome.text = it.toString()
+    })
+  }
+
+  private fun setUpViews() {
+    binding.button.setOnClickListener {
+      homeViewModel.fetchUsers()
+    }
   }
 }
