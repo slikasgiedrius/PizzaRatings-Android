@@ -2,6 +2,8 @@ package com.giedrius.slikas.pizzaratings.di
 
 import android.content.Context
 import com.giedrius.slikas.pizzaratings.utils.PizzaRatingsPreferences
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,4 +19,8 @@ object ApplicationModule {
   @Singleton
   fun providePizzaRatingsPreferences(@ApplicationContext appContext: Context) =
     PizzaRatingsPreferences(appContext)
+
+  @Provides
+  @Singleton
+  fun provideFirestore() = Firebase.firestore
 }

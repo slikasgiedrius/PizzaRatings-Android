@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "613819608714",
+    "project_id": "pizza-ratings-5cef0",
+    "storage_bucket": "pizza-ratings-5cef0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613819608714:android:70174c8a1573fdc5558773",
+        "android_client_info": {
+          "package_name": "com.giedrius.slikas.pizzaratings"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "613819608714-ctt6jgsrt9h7hn6fpksvd8vdj4d30juj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYmlYvXWzGWmQjpeEF4FiOsZU7U9E87uQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "613819608714-ctt6jgsrt9h7hn6fpksvd8vdj4d30juj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
