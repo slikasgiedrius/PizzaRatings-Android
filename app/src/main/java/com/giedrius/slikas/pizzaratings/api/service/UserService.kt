@@ -1,5 +1,6 @@
-package com.giedrius.slikas.pizzaratings.api
+package com.giedrius.slikas.pizzaratings.api.service
 
+import com.giedrius.slikas.pizzaratings.api.model.User
 import retrofit2.Response
 import retrofit2.http.GET
 

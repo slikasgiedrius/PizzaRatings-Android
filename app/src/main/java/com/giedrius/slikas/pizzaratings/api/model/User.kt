@@ -1,4 +1,4 @@
-package com.giedrius.slikas.pizzaratings.api
+package com.giedrius.slikas.pizzaratings.api.model
 
 import com.squareup.moshi.Json
 
