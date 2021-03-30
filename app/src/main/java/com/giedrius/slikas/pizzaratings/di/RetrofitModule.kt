@@ -3,7 +3,6 @@ package com.giedrius.slikas.pizzaratings.di
 import com.giedrius.slikas.pizzaratings.BuildConfig
 import com.giedrius.slikas.pizzaratings.api.UserService
 import com.giedrius.slikas.pizzaratings.api.UserServiceImpl
-import com.giedrius.slikas.pizzaratings.api.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,11 +41,8 @@ object RetrofitModule {
       .client(okHttpClient)
       .build()
 
-  @Provides
-  @Singleton
-  fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
 
   @Provides
   @Singleton
-  fun provideUserService(userService: UserServiceImpl): UserService = userService
+  fun provideUserService(retrofit: Retrofit): UserService = retrofit.create(UserService::class.java)
 }

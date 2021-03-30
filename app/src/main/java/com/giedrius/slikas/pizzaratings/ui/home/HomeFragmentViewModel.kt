@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.giedrius.slikas.pizzaratings.api.MainRepository
+import com.giedrius.slikas.pizzaratings.api.UserRepository
 import com.giedrius.slikas.pizzaratings.api.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeFragmentViewModel @Inject constructor(
-  private val mainRepository: MainRepository
+  private val userRepository: UserRepository
 ) : ViewModel() {
 
   private val _text = MutableLiveData<String>().apply {
@@ -24,7 +24,7 @@ class HomeFragmentViewModel @Inject constructor(
 
   fun fetchUsers() {
     viewModelScope.launch {
-      mainRepository.getUser().let {
+      userRepository.getUser().let {
         if (it.isSuccessful) {
           users.postValue(it.body())
         } else {
