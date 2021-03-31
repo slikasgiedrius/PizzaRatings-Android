@@ -3,9 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/compose-model-1617108796738.xml" value="1.0" />
+        <entry key="../../../../layout/compose-model-1617108952487.xml" value="0.33055555555555555" />
+        <entry key="../../../../layout/compose-model-1617110124185.xml" value="0.33055555555555555" />
+        <entry key="../../../../layout/compose-model-1617110559496.xml" value="1.0" />
+        <entry key="../../../../layout/compose-model-1617110836655.xml" value="0.29974597798475866" />
+        <entry key="../../../../layout/compose-model-1617111155403.xml" value="0.33055555555555555" />
+        <entry key="../../../../layout/compose-model-1617171703775.xml" value="0.33055555555555555" />
+        <entry key="../../../../layout/compose-model-1617172173917.xml" value="0.213703591910655" />
+        <entry key="../../../../layout/compose-model-1617173001099.xml" value="0.213703591910655" />
+        <entry key="../../../../layout/compose-model-1617173502841.xml" value="0.33055555555555555" />
+        <entry key="../../../../layout/compose-model-1617183229709.xml" value="1.0" />
+        <entry key="../../../../layout/compose-model-1617183714798.xml" value="0.33055555555555555" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3421875" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3421875" />
+        <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.17777777777777778" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.3421875" />
       </map>
     </option>
