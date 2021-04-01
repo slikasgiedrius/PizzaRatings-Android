@@ -1,12 +1,15 @@
 package com.giedrius.slikas.pizzaratings.compose
 
 import android.os.Bundle
+import android.widget.Space
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -26,101 +29,54 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.giedrius.slikas.pizzaratings.R
 import com.giedrius.slikas.pizzaratings.compose.ui.theme.PizzaRatingsTheme
+import com.google.accompanist.coil.CoilImage
 
 class ComposeActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContent {
       PizzaRatingsTheme {
-        Column {
-          NewsStory()
-          PhotographerCard()
-        }
+        LayoutsCodelab()
+//        Column {
+//          NewsStory()
+//          PhotographerCard()
+//        }
       }
     }
   }
-}
 
-@Composable
-fun NewsStory() {
-  val typography = MaterialTheme.typography
-  Column(
-    modifier = Modifier
-      .background(MaterialTheme.colors.surface)
-      .padding(16.dp)
-  ) {
-    Image(
-      painter = painterResource(id = R.drawable.header),
-      contentDescription = "Accessibility is extremely important",
-      modifier = Modifier
-        .height(180.dp)
-        .fillMaxWidth()
-        .clip(shape = RoundedCornerShape(4.dp)),
-      contentScale = ContentScale.Crop
-    )
-    Spacer(Modifier.height(16.dp))
 
-    Text(
-      text = "A day wandering through the sandhills in Shark Fin Cove, and a few of the " +
-          "sights I saw",
-      style = typography.h6,
-      maxLines = 2,
-      overflow = TextOverflow.Ellipsis
-    )
-    Text(text = "Davenport, California", style = typography.body2)
-    Text(text = "December 2018", style = typography.body2)
-  }
-}
-
-@Composable
-fun PhotographerCard() {
-  Row(
-    modifier = Modifier
-      .clip(RoundedCornerShape(4.dp))
-      .background(MaterialTheme.colors.surface)
-      .clickable(onClick = { /* Ignoring onClick */ })
-      .padding(16.dp)
-  ) {
-    Surface(
-      modifier = Modifier.size(50.dp),
-      shape = CircleShape,
-      color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
-    ) {
-      //Image
-    }
-    Column(
-      modifier = Modifier
-        .padding(start = 8.dp)
-        .align(Alignment.CenterVertically)
-    ) {
-      Text("Alfred Sisley", fontWeight = FontWeight.Bold)
-      CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-        Text("3 minutes ago", style = MaterialTheme.typography.body2)
-      }
+  @Preview
+  @Composable
+  fun LayoutsCodelabPreview() {
+    PizzaRatingsTheme {
+      LayoutsCodelab()
     }
   }
-}
 
-@Composable
-fun LayoutsCodelab() {
-  Scaffold(
-    topBar = {
-      TopAppBar(
-        title = {
-          Text(text = "AppBar")
-        },
-        navigationIcon = {
-          IconButton(
-            onClick = { /* doSomething() */ }
-          ) {
-            Icon(Icons.Filled.ArrowBack, contentDescription = null)
+  @Composable
+  fun LayoutsCodelab() {
+    Scaffold(
+      topBar = {
+        TopAppBar(
+          title = {
+            Text(text = "AppBar")
+          },
+          navigationIcon = {
+            IconButton(
+              onClick = { closeActivity() }
+            ) {
+              Icon(Icons.Filled.ArrowBack, contentDescription = null)
+            }
           }
-        }
-      )
+        )
+      }
+    ) { innerPadding ->
+      BodyContent(Modifier.padding(innerPadding))
     }
-  ) { innerPadding ->
-    BodyContent(Modifier.padding(innerPadding))
   }
+
+  private fun closeActivity() = finish()
 }
 
 @Composable
@@ -128,28 +84,37 @@ fun BodyContent(modifier: Modifier = Modifier) {
   Column(modifier = modifier) {
     Text(text = "Hi there!")
     Text(text = "Thanks for going through the Layouts codelab")
+    LazyList()
   }
 }
 
-
-@Preview
 @Composable
-fun LayoutsCodelabPreview() {
-  PizzaRatingsTheme {
-    LayoutsCodelab()
+fun LazyList() {
+  // We save the scrolling position with this state that can also
+  // be used to programmatically scroll the list
+  val scrollState = rememberLazyListState()
+
+  LazyColumn(state = scrollState) {
+    items(20) {
+      ImageListItem(it)
+    }
   }
 }
 
-@Preview(name = "News story")
 @Composable
-fun PreviewNewsStory() {
-  NewsStory()
-}
-
-@Preview()
-@Composable
-fun PreviewPhotoCard() {
-  PhotographerCard()
+fun ImageListItem(index: Int) {
+  Row(verticalAlignment = Alignment.CenterVertically) {
+    CoilImage(
+      data = "https://developer.android.com/images/brand/Android_Robot.png",
+      contentDescription = "Android logo dude",
+      modifier = Modifier.size(50.dp)
+    )
+    Spacer(modifier = Modifier.width(10.dp))
+    Text(
+      text = "Item #$index",
+      style = MaterialTheme.typography.subtitle1
+    )
+  }
 }
 
 
