@@ -96,7 +96,9 @@ dependencies {
     implementation "androidx.compose.runtime:runtime-rxjava2:$compose_version"
     // UI Tests
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    //Jetpack navigation
+    implementation "androidx.navigation:navigation-compose:1.0.0-alpha09"
 
     //Coil-accompanist
-    implementation "com.google.accompanist:accompanist-coil:0.6.2"
+    implementation "com.google.accompanist:accompanist-coil:0.7.0"
 }

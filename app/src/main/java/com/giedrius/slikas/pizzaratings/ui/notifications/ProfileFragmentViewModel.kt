@@ -7,10 +7,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class NotificationsFragmentViewModel @Inject constructor() : ViewModel() {
+class ProfileFragmentViewModel @Inject constructor() : ViewModel() {
 
   private val _text = MutableLiveData<String>().apply {
-    value = "This is notifications Fragment"
+    value = "This is Profile Fragment"
   }
   val text: LiveData<String> = _text
 }

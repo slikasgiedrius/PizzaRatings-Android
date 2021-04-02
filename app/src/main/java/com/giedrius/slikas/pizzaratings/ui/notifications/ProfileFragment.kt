@@ -17,13 +17,11 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
@@ -35,9 +33,9 @@ import com.giedrius.slikas.pizzaratings.compose.ui.theme.PizzaRatingsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NotificationsFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
-  private lateinit var viewModel: NotificationsFragmentViewModel
+  private lateinit var viewModel: ProfileFragmentViewModel
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -56,7 +54,7 @@ class NotificationsFragment : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    viewModel = ViewModelProvider(requireActivity()).get(NotificationsFragmentViewModel::class.java)
+    viewModel = ViewModelProvider(requireActivity()).get(ProfileFragmentViewModel::class.java)
 
     handleObservers()
   }

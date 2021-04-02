@@ -12,12 +12,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DashboardFragmentViewModel @Inject constructor(
+class FavouritesFragmentViewModel @Inject constructor(
   val userRepository: UserRepository
 ) : ViewModel() {
 
   private val _text = MutableLiveData<String>().apply {
-    value = "This is dashboard Fragment"
+    value = "This is Favourites Fragment"
   }
   val text: LiveData<String> = _text
 }
