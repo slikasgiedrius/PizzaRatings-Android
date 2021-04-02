@@ -23,6 +23,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
@@ -31,7 +32,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.giedrius.slikas.pizzaratings.R
 import com.giedrius.slikas.pizzaratings.compose.ComposeActivity
 import com.giedrius.slikas.pizzaratings.compose.ui.theme.PizzaRatingsTheme
-import com.giedrius.slikas.pizzaratings.databinding.FragmentNotificationsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,12 +48,7 @@ class NotificationsFragment : Fragment() {
       //Set compose here
       setContent {
         PizzaRatingsTheme {
-          Button(
-            onClick = { navigateToComposeActivity() },
-          ) {
-            Text("Welcome")
-          }
-          NewsStory()
+          navigationButton(::navigateToComposeActivity)
         }
       }
     }
@@ -64,7 +59,6 @@ class NotificationsFragment : Fragment() {
     viewModel = ViewModelProvider(requireActivity()).get(NotificationsFragmentViewModel::class.java)
 
     handleObservers()
-    setUpViews()
   }
 
   private fun handleObservers() {
@@ -73,11 +67,7 @@ class NotificationsFragment : Fragment() {
     })
   }
 
-  private fun setUpViews() {
-//    binding.compose.setOnClickListener { navigateToComposeActivity() }
-  }
-
-  private fun navigateToComposeActivity() {
+  fun navigateToComposeActivity() {
     val intent = Intent(context, ComposeActivity::class.java)
     startActivity(intent)
   }
@@ -144,18 +134,31 @@ fun PhotographerCard() {
 }
 
 @Composable
-fun navigationButton() {
-  Button(
-    onClick = { /*TODO*/ },
-  ) {
-    Text("Welcome")
+fun navigationButton(
+  onClick: () -> Unit
+) {
+  Surface {
+    Column {
+      NewsStory()
+      Button(
+        onClick = { onClick() },
+        modifier = Modifier
+          .padding(16.dp)
+          .fillMaxWidth()
+          .wrapContentHeight()
+      ) {
+        Text("Welcome")
+      }
+    }
   }
 }
 
-@Preview
+@Preview(
+  showSystemUi = true,
+)
 @Composable
 fun PreviewNavigationButton() {
   PizzaRatingsTheme {
-    navigationButton()
+    navigationButton(onClick = {  })
   }
 }
