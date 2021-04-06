@@ -43,24 +43,21 @@ class FavouritesFragment : Fragment() {
 
 @Composable
 fun FavouritesFragmentContent(viewModel: FavouritesFragmentViewModel) {
-  val pizzaData = viewModel.userRepository.onPizzeriasDownloaded.observeAsState().value
+  val pizzaData = viewModel.pizzaRepository.onPizzeriasDownloaded.observeAsState().value
 
   Column {
     if (pizzaData != null) {
       RatingsList(ratings = pizzaData)
     }
-    Button(
-      onClick = { viewModel.userRepository.getPizzerias() }
-    ) {
-      Text("Firebase DB call for pizza")
-    }
 
     Button(
-      onClick = { viewModel.userRepository.saveRating(
-        pizzeria = "Pizza & Nachos Pub",
-        userId = "darm",
-        rating = 4
-      ) }
+      onClick = {
+        viewModel.saveRating(
+          userId = "darm",
+          pizzeria = "Pizza & Nachos Pub",
+          rating = 4
+        )
+      }
     ) {
       Text("Save rating")
     }

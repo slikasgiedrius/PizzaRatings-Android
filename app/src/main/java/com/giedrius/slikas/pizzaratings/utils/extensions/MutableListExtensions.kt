@@ -3,6 +3,7 @@ package com.giedrius.slikas.pizzaratings.utils.extensions
 import com.giedrius.slikas.pizzaratings.data.model.Rating
 import com.giedrius.slikas.pizzaratings.data.model.RatingResponse
 
+@Suppress("UNCHECKED_CAST")
 fun MutableList<RatingResponse>.toRating(): MutableList<Rating> {
   val pizzerias = mutableListOf<Rating>()
 
