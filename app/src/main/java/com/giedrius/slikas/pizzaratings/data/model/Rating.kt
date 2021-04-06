@@ -5,5 +5,6 @@ data class Rating(
   val addresses: List<String>,
   val ratings: Map<String, Int>,
   val numberOfRatings: Int,
-  val averageRating: Double
+  val averageRating: Double,
+  val logoUrl: String
 )

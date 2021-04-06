@@ -28,7 +28,8 @@ class PizzaRepository @Inject constructor(
             RatingResponse(
               item.data["name"] as String,
               item.data["addresses"] as List<String>,
-              item.data["ratings"] as Map<String, Long>
+              item.data["ratings"] as Map<String, Long>,
+              item.data["logoUrl"] as String
             )
           )
         }

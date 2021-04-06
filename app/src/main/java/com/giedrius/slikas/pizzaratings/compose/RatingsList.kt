@@ -29,7 +29,8 @@ fun PreviewRatingsList() {
           "gsli" to 3
         ),
         numberOfRatings = 1,
-        averageRating = 3.0
+        averageRating = 3.0,
+        logoUrl = "https://drive.google.com/thumbnail?id=1jgJb_Ev4QeAbYTv-q2lnbXW7SieLAqNq"
       ),
     )
   )

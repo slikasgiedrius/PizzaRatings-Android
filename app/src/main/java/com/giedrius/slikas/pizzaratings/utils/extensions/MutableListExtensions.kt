@@ -18,7 +18,8 @@ fun MutableList<RatingResponse>.toRating(): MutableList<Rating> {
         item.addresses,
         item.ratings as Map<String, Int>,
         numberOfRatings,
-        averageRating
+        averageRating,
+        item.logoUrl
       )
     )
   }

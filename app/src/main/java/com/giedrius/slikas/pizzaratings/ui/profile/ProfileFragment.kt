@@ -23,7 +23,6 @@ class ProfileFragment : Fragment() {
     savedInstanceState: Bundle?
   ): View {
     return ComposeView(requireContext()).apply {
-      //Set compose here
       setContent {
         PizzaRatingsTheme {
           NewsStory()
@@ -35,13 +34,5 @@ class ProfileFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     viewModel = ViewModelProvider(requireActivity()).get(ProfileFragmentViewModel::class.java)
-
-    handleObservers()
-  }
-
-  private fun handleObservers() {
-    viewModel.text.observe(viewLifecycleOwner, Observer {
-//      binding.textNotifications.text = it
-    })
   }
 }
