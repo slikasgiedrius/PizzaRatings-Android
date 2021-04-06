@@ -1,5 +1,6 @@
 package com.giedrius.slikas.pizzaratings.compose
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
@@ -12,6 +13,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.transform.CircleCropTransformation
+import com.giedrius.slikas.pizzaratings.compose.base.RatingsCell
 import com.giedrius.slikas.pizzaratings.data.model.Rating
 import com.google.accompanist.coil.CoilImage
 
@@ -21,7 +23,11 @@ fun ListItem(
 ) {
   Row(
     verticalAlignment = Alignment.CenterVertically,
-    modifier = Modifier.padding(16.dp)
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(16.dp)
+      .clip(shape = RoundedCornerShape(8.dp))
+      .clickable(onClick = { })
   ) {
     CoilImage(
       data = rating.logoUrl,
@@ -30,8 +36,7 @@ fun ListItem(
       contentScale = ContentScale.Crop,
       modifier = Modifier
         .height(80.dp)
-        .width(80.dp)
-        .clip(shape = RoundedCornerShape(4.dp)),
+        .width(80.dp),
     )
     Column(
       modifier = Modifier.padding(start = 8.dp, end = 8.dp)
@@ -40,17 +45,12 @@ fun ListItem(
         rating.name,
         style = MaterialTheme.typography.h6
       )
-      Row {
-        Text(
-          text = "${rating.averageRating} average rating",
-          style = MaterialTheme.typography.caption
-        )
-        Spacer(Modifier.width(2.dp))
-        Text(
-          text = "(${rating.numberOfRatings})",
-          style = MaterialTheme.typography.caption
-        )
-      }
+      Text(
+        text = "${rating.averageRating} average rating",
+        style = MaterialTheme.typography.subtitle1
+      )
+      Spacer(Modifier.width(2.dp))
+      RatingsCell(rating.numberOfRatings)
     }
   }
 }
@@ -62,10 +62,8 @@ fun PreviewListItem() {
     Rating(
       name = "Pizza & Nachos Pub",
       addresses = listOf("Linkmenų g.4, Vilnius 09300"),
-      ratings = mapOf(
-        "gsli" to 3
-      ),
-      numberOfRatings = 1,
+      ratings = mapOf(),
+      numberOfRatings = 0,
       averageRating = 3.0,
       logoUrl = "https://drive.google.com/thumbnail?id=1jgJb_Ev4QeAbYTv-q2lnbXW7SieLAqNq"
     )
