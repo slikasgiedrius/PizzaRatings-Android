@@ -1,13 +1,18 @@
-package com.giedrius.slikas.pizzaratings.ui.dashboard
+package com.giedrius.slikas.pizzaratings.ui.favourites
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material.Button
 import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.giedrius.slikas.pizzaratings.compose.RatingsList
 import com.giedrius.slikas.pizzaratings.compose.base.PizzaRatingsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,7 +29,7 @@ class FavouritesFragment : Fragment() {
     return ComposeView(requireContext()).apply {
       setContent {
         PizzaRatingsTheme {
-          Text(text = "Favourites Fragment")
+          FavouritesFragmentContent(viewModel)
         }
       }
     }
@@ -33,22 +38,29 @@ class FavouritesFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     viewModel = ViewModelProvider(requireActivity()).get(FavouritesFragmentViewModel::class.java)
-
-    handleObservers()
-    setUpViews()
   }
+}
 
-  private fun handleObservers() {
-    viewModel.text.observe(viewLifecycleOwner) {
-//      binding.textDashboard.text = it
-    }
-    viewModel.userRepository.onUsersDownloaded.observe(viewLifecycleOwner) {
-//      binding.textDashboard.text = it.toString()
-    }
-  }
+@Composable
+fun FavouritesFragmentContent(viewModel: FavouritesFragmentViewModel) {
+  val pizzaData = viewModel.userRepository.onPizzeriasDownloaded.observeAsState().value
+  val overviewData = viewModel.userRepository.onOverviewDownloaded.observeAsState().value
 
-  private fun setUpViews() {
-//    binding.get.setOnClickListener { viewModel.userRepository.getUsers() }
-//    binding.save.setOnClickListener { viewModel.userRepository.saveUser() }
+  Column {
+    if (pizzaData != null) {
+      RatingsList(ratings = pizzaData)
+    }
+    Button(
+      onClick = { viewModel.userRepository.getPizzerias() }
+    ) {
+      Text("Firebase DB call for pizza")
+    }
+
+    Text(text = "Overview $overviewData")
+    Button(
+      onClick = { viewModel.userRepository.getOverview() }
+    ) {
+      Text("Firebase DB call for overview")
+    }
   }
 }

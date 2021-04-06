@@ -26,7 +26,7 @@ fun PreviewListItem() {
       name = "Pizza & Nachos Pub",
       address = "Linkmenų g.4, Vilnius 09300",
       numberOfRatings = 1,
-      averageRating = 3.00f
+      averageRating = 3.00
     )
   )
 }

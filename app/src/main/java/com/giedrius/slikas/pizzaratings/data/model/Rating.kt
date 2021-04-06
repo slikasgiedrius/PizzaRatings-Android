@@ -4,5 +4,5 @@ data class Rating(
   val name: String,
   val address: String,
   val numberOfRatings: Int,
-  val averageRating: Any
+  val averageRating: Double
 )

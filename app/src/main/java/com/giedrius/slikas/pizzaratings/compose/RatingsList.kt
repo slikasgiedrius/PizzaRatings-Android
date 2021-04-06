@@ -26,13 +26,13 @@ fun PreviewRatingsList() {
         name = "Pizza & Nachos Pub",
         address = "Linkmenų g.4, Vilnius 09300",
         numberOfRatings = 1,
-        averageRating = 3.00f
+        averageRating = 3.00
       ),
       Rating(
         name = "Pizza Verde",
         address = "Kalvarijų g. 101A, Vilnius 08219",
         numberOfRatings = 0,
-        averageRating = 0
+        averageRating = 0.00
       )
     )
   )

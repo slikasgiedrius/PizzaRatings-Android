@@ -1,4 +1,4 @@
-package com.giedrius.slikas.pizzaratings.ui.notifications
+package com.giedrius.slikas.pizzaratings.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater

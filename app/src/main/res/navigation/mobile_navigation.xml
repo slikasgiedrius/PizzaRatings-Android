@@ -12,11 +12,11 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.giedrius.slikas.pizzaratings.ui.dashboard.FavouritesFragment"
+        android:name="com.giedrius.slikas.pizzaratings.ui.favourites.FavouritesFragment"
         android:label="@string/title_favourites" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.giedrius.slikas.pizzaratings.ui.notifications.ProfileFragment"
+        android:name="com.giedrius.slikas.pizzaratings.ui.profile.ProfileFragment"
         android:label="@string/title_profile" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.giedrius.slikas.pizzaratings.ui.notifications
+package com.giedrius.slikas.pizzaratings.ui.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
