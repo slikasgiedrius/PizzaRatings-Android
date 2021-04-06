@@ -14,15 +14,15 @@ class UserRepository @Inject constructor(
   private val userService: UserService,
   private val firestore: FirebaseFirestore
 ) {
-  
+
   val onPizzeriasDownloaded = MutableLiveData<List<Rating>>()
-  val onOverviewDownloaded = MutableLiveData<List<Overview>>()
-  
+  val onRatingsDownloaded = MutableLiveData<String>()
+
   suspend fun getUser() = userService.getUser()
 
   fun getPizzerias() {
     firestore
-      .collection("Vilnius")
+      .collection(DB_VILNIUS)
       .get()
       .addOnSuccessListener { items ->
         val response = mutableListOf<RatingResponse>()
@@ -30,62 +30,44 @@ class UserRepository @Inject constructor(
           response.add(
             RatingResponse(
               item.data["name"] as String,
-              item.data["address"] as String,
-              item.data["numberOfRatings"] as Long,
-              item.data["averageRating"] as Long
+              item.data["addresses"] as List<String>,
+              item.data["ratings"] as Map<String, Long>
             )
           )
         }
         onPizzeriasDownloaded.value = response.toRating()
       }
       .addOnFailureListener { exception ->
-        Log.w("TAG", "Error getting documents: ", exception)
+        Log.e("Parsing error", "While executing 'getPizzerias': ", exception)
       }
   }
 
-  fun getOverview() {
-    val docRef = firestore
-      .collection("Overview")
-      .document("Dodo Pizza")
-      .collection("locations")
+  fun saveRating(
+    pizzeria: String,
+    userId: String,
+    rating: Int
+  ) {
+    //Save to Ratings DB
+    firestore.collection(DB_RATINGS).document(pizzeria).update(
+      mapOf(
+        "$FIELD_RATINGS.$userId" to rating
+      )
+    )
 
-    docRef
-      .get()
-      .addOnSuccessListener { items ->
-        val response = mutableListOf<Overview>()
-
-        for (item in items) {
-          response.add(
-            Overview(
-              item.data["address"] as String,
-              item.data["numberOfRatings"] as Long,
-              item.data["averageRating"] as Long
-            )
-          )
-        }
-        onOverviewDownloaded.value = response
-      }
-      .addOnFailureListener { exception ->
-        Log.w("TAG", "Error getting documents: ", exception)
-      }
+    //Save to Vilnius DB
+    firestore.collection(DB_VILNIUS).document(pizzeria).update(
+      mapOf(
+        "$FIELD_RATINGS.$userId" to rating
+      )
+    )
   }
 
+  companion object {
+    //DBs
+    private const val DB_RATINGS = "Ratings"
+    private const val DB_VILNIUS = "Vilnius"
 
-
-//  fun saveUser() {
-//    val user = hashMapOf(
-//      "name" to "Darius",
-//      "age" to 25
-//    )
-//
-//    firestore.collection("users")
-//      .document("darm")
-//      .set(user)
-//      .addOnSuccessListener {
-//        Log.v("Add", "Success")
-//      }
-//      .addOnFailureListener {
-//        Log.v("Add", "Failure")
-//      }
-//  }
+    //Fields
+    private const val FIELD_RATINGS = "ratings"
+  }
 }

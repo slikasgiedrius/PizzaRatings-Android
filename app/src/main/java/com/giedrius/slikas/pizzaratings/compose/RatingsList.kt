@@ -24,16 +24,13 @@ fun PreviewRatingsList() {
     ratings = listOf(
       Rating(
         name = "Pizza & Nachos Pub",
-        address = "Linkmenų g.4, Vilnius 09300",
+        addresses = listOf("Linkmenų g.4, Vilnius 09300"),
+        ratings = mapOf(
+          "gsli" to 3
+        ),
         numberOfRatings = 1,
-        averageRating = 3.00
+        averageRating = 3.0
       ),
-      Rating(
-        name = "Pizza Verde",
-        address = "Kalvarijų g. 101A, Vilnius 08219",
-        numberOfRatings = 0,
-        averageRating = 0.00
-      )
     )
   )
 }

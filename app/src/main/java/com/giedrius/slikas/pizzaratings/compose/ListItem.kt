@@ -12,8 +12,7 @@ fun ListItem(
 ) {
   Column {
     Text(rating.name)
-    Text(rating.address)
-    Text("${rating.numberOfRatings} rating(s)")
+    Text(rating.addresses.toString())
     Text("${rating.averageRating} average rating")
   }
 }
@@ -24,9 +23,12 @@ fun PreviewListItem() {
   ListItem(
     Rating(
       name = "Pizza & Nachos Pub",
-      address = "Linkmenų g.4, Vilnius 09300",
+      addresses = listOf("Linkmenų g.4, Vilnius 09300"),
+      ratings = mapOf(
+        "gsli" to 3
+      ),
       numberOfRatings = 1,
-      averageRating = 3.00
+      averageRating = 3.0
     )
   )
 }
