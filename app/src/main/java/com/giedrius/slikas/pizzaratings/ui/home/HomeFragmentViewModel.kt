@@ -15,18 +15,14 @@ class HomeFragmentViewModel @Inject constructor(
   private val userRepository: UserRepository
 ) : ViewModel() {
 
-  private val _text = MutableLiveData<String>().apply {
-    value = "This is home Fragment"
-  }
-  val text: LiveData<String> = _text
-
-  val users = MutableLiveData<User>()
+  private val _user = MutableLiveData<User>()
+  val user: LiveData<User> = _user
 
   fun fetchUsers() {
     viewModelScope.launch {
       userRepository.getUser().let {
         if (it.isSuccessful) {
-          users.postValue(it.body())
+          _user.postValue(it.body())
         } else {
           println("Error ${it.body()}")
         }

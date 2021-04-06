@@ -8,7 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.giedrius.slikas.pizzaratings.compose.ui.theme.PizzaRatingsTheme
+import com.giedrius.slikas.pizzaratings.compose.base.PizzaRatingsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

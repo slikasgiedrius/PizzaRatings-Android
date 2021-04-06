@@ -1,4 +1,4 @@
-package com.giedrius.slikas.pizzaratings.compose.ui.theme
+package com.giedrius.slikas.pizzaratings.compose.base
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
