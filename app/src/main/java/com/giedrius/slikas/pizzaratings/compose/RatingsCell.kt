@@ -1,4 +1,4 @@
-package com.giedrius.slikas.pizzaratings.ui.favourites.compose
+package com.giedrius.slikas.pizzaratings.compose
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text

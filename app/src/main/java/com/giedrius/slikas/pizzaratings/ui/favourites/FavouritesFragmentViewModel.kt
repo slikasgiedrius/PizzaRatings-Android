@@ -7,12 +7,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FavouritesFragmentViewModel @Inject constructor(
-  val pizzaRepository: PizzaRepository
 ) : ViewModel() {
-
-  fun saveRating(
-    userId: String,
-    pizzeria: String,
-    rating: Int
-  ) = pizzaRepository.saveRating(userId, pizzeria, rating)
 }

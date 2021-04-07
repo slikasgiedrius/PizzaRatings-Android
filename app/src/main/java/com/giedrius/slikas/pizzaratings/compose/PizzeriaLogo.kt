@@ -1,4 +1,4 @@
-package com.giedrius.slikas.pizzaratings.ui.favourites.compose
+package com.giedrius.slikas.pizzaratings.compose
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable

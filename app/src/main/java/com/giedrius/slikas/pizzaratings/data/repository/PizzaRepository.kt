@@ -21,22 +21,25 @@ class PizzaRepository @Inject constructor(
 
     firestore
       .collection(DB_VILNIUS)
-      .get()
-      .addOnSuccessListener { items ->
-        for (item in items) {
+      .addSnapshotListener { value, e ->
+        if (e != null) {
+          Log.w("Parsing error", "While executing 'getPizzerias' : ", e)
+          return@addSnapshotListener
+        }
+
+        //Assuming it's not null because it passed the above check
+        for (item in value!!) {
           response.add(
             RatingResponse(
               item.data["name"] as String,
               item.data["addresses"] as List<String>,
-              item.data["ratings"] as Map<String, Long>,
+              item.data["ratings"] as Map<String, Long>?,
               item.data["logoUrl"] as String
             )
           )
         }
         _onPizzeriasDownloaded.value = response.toRating()
-      }
-      .addOnFailureListener { exception ->
-        Log.e("Parsing error", "While executing 'getPizzerias': ", exception)
+        response.clear()
       }
   }
 

@@ -10,7 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.giedrius.slikas.pizzaratings.R
 import com.giedrius.slikas.pizzaratings.databinding.ActivityMainBinding
-import com.giedrius.slikas.pizzaratings.ui.favourites.FavouritesFragmentViewModel
+import com.giedrius.slikas.pizzaratings.ui.home.HomeFragmentViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
   private lateinit var binding: ActivityMainBinding
   private val viewModel: MainActivityViewModel by viewModels()
-  private val favouritesViewModel: FavouritesFragmentViewModel by viewModels()
+  private val homeFragmentViewModel: HomeFragmentViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -45,5 +45,5 @@ class MainActivity : AppCompatActivity() {
     navView.setupWithNavController(navController)
   }
 
-  private fun downloadPizzerias() = favouritesViewModel.pizzaRepository.getPizzerias()
+  private fun downloadPizzerias() = homeFragmentViewModel.pizzaRepository.getPizzerias()
 }

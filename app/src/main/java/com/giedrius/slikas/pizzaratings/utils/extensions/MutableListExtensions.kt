@@ -8,17 +8,23 @@ fun MutableList<RatingResponse>.toRating(): MutableList<Rating> {
   val pizzerias = mutableListOf<Rating>()
 
   for (item in this) {
-    val numberOfRatings = item.ratings.size
-    val sumOfRatings: Long = item.ratings.map { it.value }.sum()
-    val averageRating: Double = sumOfRatings.toDouble() / numberOfRatings
+    var numberOfRatings: Int = 0
+    var sumOfRatings = 0L
+    var averageRating = 0.0
+
+    if (item.ratings != null){
+      numberOfRatings = item.ratings.size
+      sumOfRatings = item.ratings.map { it.value }.sum()
+      averageRating = sumOfRatings.toDouble() / numberOfRatings
+    }
 
     pizzerias.add(
       Rating(
         item.name,
         item.addresses,
-        item.ratings as Map<String, Int>,
+        item.ratings as Map<String, Int>?,
         numberOfRatings,
-        averageRating,
+        averageRating.twoDecimalPoints(),
         item.logoUrl
       )
     )

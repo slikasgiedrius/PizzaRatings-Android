@@ -35,7 +35,3 @@ class HomeFragment : Fragment() {
     viewModel = ViewModelProvider(requireActivity()).get(HomeFragmentViewModel::class.java)
   }
 }
-
-@Composable
-fun HomeFragmentContent(viewModel: HomeFragmentViewModel) {
-}
