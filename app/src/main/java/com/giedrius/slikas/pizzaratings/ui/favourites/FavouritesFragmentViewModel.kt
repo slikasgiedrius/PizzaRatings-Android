@@ -6,6 +6,4 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class FavouritesFragmentViewModel @Inject constructor(
-) : ViewModel() {
-}
+class FavouritesFragmentViewModel @Inject constructor() : ViewModel()

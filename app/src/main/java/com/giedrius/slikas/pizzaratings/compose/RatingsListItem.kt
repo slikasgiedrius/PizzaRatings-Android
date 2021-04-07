@@ -28,13 +28,10 @@ fun ListItem(rating: Rating) {
       modifier = Modifier.padding(start = 8.dp, end = 8.dp)
     ) {
       Text(
-        rating.name ?: "No name :(",
+        rating.name,
         style = MaterialTheme.typography.h6
       )
-      Text(
-        text = "${rating.averageRating} average rating",
-        style = MaterialTheme.typography.subtitle1
-      )
+      AverageRatingCell(rating.averageRating)
       Spacer(Modifier.width(2.dp))
       RatingsCell(rating.numberOfRatings)
     }

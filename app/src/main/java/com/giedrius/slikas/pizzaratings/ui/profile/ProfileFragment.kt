@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.material.Text
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.giedrius.slikas.pizzaratings.compose.NewsStory
 import com.giedrius.slikas.pizzaratings.compose.base.PizzaRatingsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,7 +24,7 @@ class ProfileFragment : Fragment() {
     return ComposeView(requireContext()).apply {
       setContent {
         PizzaRatingsTheme {
-          NewsStory()
+          Text("Profile Fragment")
         }
       }
     }

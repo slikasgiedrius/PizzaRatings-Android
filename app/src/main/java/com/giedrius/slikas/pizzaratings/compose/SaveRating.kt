@@ -13,7 +13,7 @@ fun SaveRating(
     onClick = {
       onClick(
         getRandomString(),
-        "Pizza & Nachos Pub",
+        "Pizza Verde",
         randomInt()
       )
     }
