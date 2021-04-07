@@ -19,7 +19,7 @@ fun MutableList<RatingResponse>.toRating(): MutableList<Rating> {
         item.addresses ?: emptyList(),
         item.ratings as Map<String, Int>? ?: mapOf(),
         numberOfRatings,
-        averageRating.twoDecimalPoints(),
+        averageRating.roundTo(2),
         item.logoUrl ?: ""
       )
     )
