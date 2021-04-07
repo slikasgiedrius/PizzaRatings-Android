@@ -14,9 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.giedrius.slikas.pizzaratings.data.model.Rating
 
 @Composable
-fun ListItem(
-  rating: Rating
-) {
+fun ListItem(rating: Rating) {
   Row(
     verticalAlignment = Alignment.CenterVertically,
     modifier = Modifier
@@ -30,7 +28,7 @@ fun ListItem(
       modifier = Modifier.padding(start = 8.dp, end = 8.dp)
     ) {
       Text(
-        rating.name,
+        rating.name ?: "No name :(",
         style = MaterialTheme.typography.h6
       )
       Text(

@@ -31,10 +31,10 @@ class PizzaRepository @Inject constructor(
         for (item in value!!) {
           response.add(
             RatingResponse(
-              item.data["name"] as String,
-              item.data["addresses"] as List<String>,
+              item.data["name"] as String?,
+              item.data["addresses"] as List<String>?,
               item.data["ratings"] as Map<String, Long>?,
-              item.data["logoUrl"] as String
+              item.data["logoUrl"] as String?
             )
           )
         }

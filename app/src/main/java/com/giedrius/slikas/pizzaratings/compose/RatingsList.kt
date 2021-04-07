@@ -12,7 +12,11 @@ fun RatingsList(
 ) {
   LazyColumn {
     items(ratings) { rating ->
-      ListItem(rating)
+      if (!rating.name.isNullOrBlank()) {
+        ListItem(rating)
+      } else {
+        //skipping pizzeria without name
+      }
     }
   }
 }
