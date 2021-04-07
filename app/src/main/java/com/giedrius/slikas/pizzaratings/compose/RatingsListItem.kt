@@ -14,14 +14,17 @@ import androidx.compose.ui.unit.dp
 import com.giedrius.slikas.pizzaratings.data.model.Rating
 
 @Composable
-fun ListItem(rating: Rating) {
+fun ListItem(
+  rating: Rating,
+  onItemClicked: (String) -> Unit
+) {
   Row(
     verticalAlignment = Alignment.CenterVertically,
     modifier = Modifier
       .fillMaxWidth()
       .padding(16.dp)
       .clip(shape = RoundedCornerShape(8.dp))
-      .clickable(onClick = { })
+      .clickable(onClick = { onItemClicked(rating.name) })
   ) {
     PizzeriaLogo(rating.logoUrl)
     Column(
@@ -49,6 +52,7 @@ fun PreviewListItem() {
       numberOfRatings = 0,
       averageRating = 3.0,
       logoUrl = "https://drive.google.com/thumbnail?id=1jgJb_Ev4QeAbYTv-q2lnbXW7SieLAqNq"
-    )
+    ),
+    onItemClicked = { }
   )
 }

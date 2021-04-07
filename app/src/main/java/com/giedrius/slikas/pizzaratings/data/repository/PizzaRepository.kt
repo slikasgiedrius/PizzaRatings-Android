@@ -48,13 +48,6 @@ class PizzaRepository @Inject constructor(
     pizzeria: String,
     rating: Int
   ) {
-    //Save to Ratings DB
-    firestore.collection(DB_RATINGS).document(pizzeria).update(
-      mapOf(
-        "$FIELD_RATINGS.$userId" to rating
-      )
-    )
-
     //Save to Vilnius DB
     firestore.collection(DB_VILNIUS).document(pizzeria).update(
       mapOf(
@@ -65,7 +58,6 @@ class PizzaRepository @Inject constructor(
 
   companion object {
     //DBs
-    private const val DB_RATINGS = "Ratings"
     private const val DB_VILNIUS = "Vilnius"
 
     //Fields

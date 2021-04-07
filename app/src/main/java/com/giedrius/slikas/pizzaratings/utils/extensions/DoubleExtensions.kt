@@ -1,5 +1,11 @@
 package com.giedrius.slikas.pizzaratings.utils.extensions
 
 fun Double.twoDecimalPoints(): Double {
-  return String.format("%.2f", this).toDouble()
+  //avoid NaN's
+  val value = String.format("%3f", this).toDouble()
+  return if (value.isNaN()){
+    0.0
+  } else {
+    value
+  }
 }

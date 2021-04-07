@@ -9,11 +9,8 @@ import androidx.compose.ui.tooling.preview.Preview
 fun AverageRatingCell(
   averageRating: Double
 ) {
-  when {
-    averageRating == 0.0 -> {
-      //Do nothing (remove the textView)
-    }
-    averageRating.isNaN() -> {
+  when (averageRating) {
+    0.0 -> {
       //Do nothing (remove the textView)
     }
     else -> {
@@ -35,10 +32,4 @@ fun PreviewAverageRatingCell() {
 @Composable
 fun PreviewAverageRatingCellWithZero() {
   AverageRatingCell(0.0)
-}
-
-@Preview(name = "Rating cell with NaN")
-@Composable
-fun PreviewAverageRatingCellWithNan() {
-  AverageRatingCell(Double.NaN)
 }

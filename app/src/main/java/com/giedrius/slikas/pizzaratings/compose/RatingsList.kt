@@ -8,11 +8,17 @@ import com.giedrius.slikas.pizzaratings.data.model.Rating
 
 @Composable
 fun RatingsList(
-  ratings: List<Rating>
+  ratings: List<Rating>,
+  onItemClicked: (String) -> Unit
 ) {
   LazyColumn {
-    items(ratings) { rating ->
-      ListItem(rating)
+    val sortedList = ratings.sortedByDescending { it.averageRating }
+
+    items(sortedList) { rating ->
+      ListItem(
+        rating,
+        onItemClicked
+      )
     }
   }
 }
@@ -31,7 +37,8 @@ fun PreviewRatingsList() {
         numberOfRatings = 1,
         averageRating = 3.0,
         logoUrl = "https://drive.google.com/thumbnail?id=1jgJb_Ev4QeAbYTv-q2lnbXW7SieLAqNq"
-      ),
-    )
+      )
+    ),
+    onItemClicked = { }
   )
 }
