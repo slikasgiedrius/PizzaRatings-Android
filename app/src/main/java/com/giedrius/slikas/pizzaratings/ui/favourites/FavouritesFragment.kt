@@ -48,6 +48,8 @@ fun FavouritesFragmentContent(viewModel: FavouritesFragmentViewModel) {
   Column {
     if (pizzaData != null) {
       RatingsList(ratings = pizzaData)
+    } else {
+      Text("There are no pizzerias :(")
     }
 
     Button(
