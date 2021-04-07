@@ -12,7 +12,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.giedrius.slikas.pizzaratings.compose.RatingsList
+import com.giedrius.slikas.pizzaratings.ui.favourites.compose.RatingsList
 import com.giedrius.slikas.pizzaratings.compose.base.PizzaRatingsTheme
 import dagger.hilt.android.AndroidEntryPoint
 

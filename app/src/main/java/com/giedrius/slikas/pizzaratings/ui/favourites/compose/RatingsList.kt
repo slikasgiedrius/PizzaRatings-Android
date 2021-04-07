@@ -1,4 +1,4 @@
-package com.giedrius.slikas.pizzaratings.compose
+package com.giedrius.slikas.pizzaratings.ui.favourites.compose
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items

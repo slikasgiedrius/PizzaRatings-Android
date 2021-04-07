@@ -1,4 +1,4 @@
-package com.giedrius.slikas.pizzaratings.compose
+package com.giedrius.slikas.pizzaratings.ui.favourites.compose
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -9,13 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.transform.CircleCropTransformation
-import com.giedrius.slikas.pizzaratings.compose.base.RatingsCell
 import com.giedrius.slikas.pizzaratings.data.model.Rating
-import com.google.accompanist.coil.CoilImage
 
 @Composable
 fun ListItem(
@@ -29,15 +25,7 @@ fun ListItem(
       .clip(shape = RoundedCornerShape(8.dp))
       .clickable(onClick = { })
   ) {
-    CoilImage(
-      data = rating.logoUrl,
-      contentDescription = "Pizzeria logo",
-      fadeIn = true,
-      contentScale = ContentScale.Crop,
-      modifier = Modifier
-        .height(80.dp)
-        .width(80.dp),
-    )
+    PizzeriaLogo(rating.logoUrl)
     Column(
       modifier = Modifier.padding(start = 8.dp, end = 8.dp)
     ) {
