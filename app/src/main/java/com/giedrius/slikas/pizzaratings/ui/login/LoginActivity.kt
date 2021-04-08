@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
@@ -13,33 +14,30 @@ import androidx.compose.material.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.giedrius.slikas.pizzaratings.R
+import com.giedrius.slikas.pizzaratings.ui.MainActivity
 import com.giedrius.slikas.pizzaratings.utils.extensions.toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
-  private lateinit var auth: FirebaseAuth
+  private val viewModel: LoginActivityViewModel by viewModels()
   private lateinit var googleSignInClient: GoogleSignInClient
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    initGoogleLogin()
+    initGoogleSignInClient()
 
     setContent {
       Column(modifier = Modifier.padding(16.dp)) {
+        Text("User email ${viewModel.firebaseAuth.currentUser?.email}")
         Button(onClick = { signIn() }) {
           Text("Login")
-        }
-        Button(onClick = { logOut() }) {
-          Text("Logout")
         }
       }
     }
@@ -48,8 +46,9 @@ class LoginActivity : AppCompatActivity() {
 
   override fun onStart() {
     super.onStart()
-    // Check if user is signed in (non-null) and update UI accordingly.
-    updateUI()
+    if (viewModel.firebaseAuth.currentUser != null) {
+      launchMainActivity()
+    }
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -72,17 +71,19 @@ class LoginActivity : AppCompatActivity() {
   }
 
   private fun updateUI() {
-    this.toast("USER ${auth.currentUser?.email}")
+    this.toast("USER ${viewModel.firebaseAuth.currentUser?.email}")
   }
 
   private fun firebaseAuthWithGoogle(idToken: String) {
     val credential = GoogleAuthProvider.getCredential(idToken, null)
-    auth.signInWithCredential(credential)
+    viewModel.firebaseAuth.signInWithCredential(credential)
       .addOnCompleteListener(this) { task ->
         if (task.isSuccessful) {
           // Sign in success, update UI with the signed-in user's information
           Log.d("TAG", "signInWithCredential:success")
-          updateUI()
+          if (viewModel.firebaseAuth.currentUser != null) {
+            launchMainActivity()
+          }
         } else {
           // If sign in fails, display a message to the user.
           Log.w("TAG", "signInWithCredential:failure", task.exception)
@@ -97,21 +98,26 @@ class LoginActivity : AppCompatActivity() {
   }
 
   private fun logOut() {
-    Firebase.auth.signOut()
-    this.toast("USER ${auth.currentUser?.email}")
+    viewModel.firebaseAuth.signOut()
+    this.toast("USER ${viewModel.firebaseAuth.currentUser?.email}")
   }
 
-    private fun initGoogleLogin() {
-      val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestIdToken(getString(R.string.default_web_client_id))
-        .requestEmail()
-        .build()
+  private fun initGoogleSignInClient() {
+    val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+      .requestIdToken(getString(R.string.default_web_client_id))
+      .requestEmail()
+      .build()
 
-      googleSignInClient = GoogleSignIn.getClient(this, gso)
-      auth = Firebase.auth
-    }
+    googleSignInClient = GoogleSignIn.getClient(this, gso)
+  }
 
-    companion object {
+  private fun launchMainActivity() {
+    val intent = Intent(this, MainActivity::class.java)
+    startActivity(intent)
+    finish()
+  }
+
+  companion object {
     private const val RC_SIGN_IN = 9001
   }
 }

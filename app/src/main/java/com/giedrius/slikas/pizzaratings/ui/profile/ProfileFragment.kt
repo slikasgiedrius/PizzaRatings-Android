@@ -31,10 +31,12 @@ class ProfileFragment : Fragment() {
           Column {
             Text("Profile Fragment")
             Button(onClick = {
+              viewModel.firebaseAuth.signOut()
               val intent = Intent(context, LoginActivity::class.java)
+              intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
               startActivity(intent)
             }) {
-              Text("Open Login Activity")
+              Text("Logout")
             }
           }
         }
