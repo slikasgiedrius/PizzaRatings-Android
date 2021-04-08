@@ -4,16 +4,28 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import com.giedrius.slikas.pizzaratings.R
+import com.giedrius.slikas.pizzaratings.compose.GoogleButton
+import com.giedrius.slikas.pizzaratings.compose.base.PizzaRatingsTheme
 import com.giedrius.slikas.pizzaratings.ui.MainActivity
 import com.giedrius.slikas.pizzaratings.utils.extensions.toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -32,16 +44,14 @@ class LoginActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     initGoogleSignInClient()
-
     setContent {
-      Column(modifier = Modifier.padding(16.dp)) {
-        Text("User email ${viewModel.firebaseAuth.currentUser?.email}")
-        Button(onClick = { signIn() }) {
-          Text("Login")
+      PizzaRatingsTheme {
+        Column(modifier = Modifier.padding(16.dp)) {
+          Text("User email ${viewModel.firebaseAuth.currentUser?.email}")
+          GoogleButton(::signIn)
         }
       }
     }
-
   }
 
   override fun onStart() {
