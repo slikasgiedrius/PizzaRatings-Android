@@ -10,22 +10,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeFragmentViewModel @Inject constructor(
-  val pizzaRepository: PizzaRepository,
-  firebaseAuth: FirebaseAuth
-) : ViewModel() {
-
-  val onUserNotFound = SingleLiveEvent<Unit>()
-
-  private val user = firebaseAuth.currentUser
-
-  fun saveRating(
-    pizzeria: String,
-    rating: Int
-  ) {
-    if (user != null) {
-      pizzaRepository.saveRating(user.uid, pizzeria, rating)
-    } else {
-      onUserNotFound.call()
-    }
-  }
-}
+  val pizzaRepository: PizzaRepository
+) : ViewModel()

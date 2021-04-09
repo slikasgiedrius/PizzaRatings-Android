@@ -1,8 +1,6 @@
 package com.giedrius.slikas.pizzaratings.data.repository
 
 import android.util.Log
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.giedrius.slikas.pizzaratings.data.model.Rating
@@ -16,18 +14,22 @@ class PizzaRepository @Inject constructor(
   private val firestore: FirebaseFirestore,
   private val firebaseAuth: FirebaseAuth
 ) {
-  private val _onPizzeriasDownloaded = MutableLiveData<List<Rating>>()
-  val onPizzeriasDownloaded: LiveData<List<Rating>> = _onPizzeriasDownloaded
+  //List
+  private val _onPizzeriasListDownloaded = MutableLiveData<List<Rating>>()
+  val onPizzeriasListDownloaded: LiveData<List<Rating>> = _onPizzeriasListDownloaded
+  //Details
+  private val _onPizzeriaDetailsDownloaded = MutableLiveData<Rating>()
+  val onPizzeriaDetailsDownloaded: LiveData<Rating> = _onPizzeriaDetailsDownloaded
 
   @Suppress("UNCHECKED_CAST")
-  fun getPizzerias() {
+  fun getPizzeriasList() {
     val response = mutableListOf<RatingResponse>()
 
     firestore
       .collection(DB_VILNIUS)
       .addSnapshotListener { value, e ->
         if (e != null) {
-          Log.w("Parsing error", "While executing 'getPizzerias' : ", e)
+          Log.w("Parsing error", "While executing 'getPizzeriasList' : ", e)
           return@addSnapshotListener
         }
 
@@ -42,8 +44,33 @@ class PizzaRepository @Inject constructor(
             )
           )
         }
-        _onPizzeriasDownloaded.value = response.toRating()
+        _onPizzeriasListDownloaded.value = response.toRating()
         response.clear()
+      }
+  }
+
+  @Suppress("UNCHECKED_CAST")
+  fun getPizzeria(pizzeria: String) {
+
+    firestore
+      .collection(DB_VILNIUS)
+      .document(pizzeria)
+      .addSnapshotListener { value, e ->
+        if (e != null) {
+          Log.w("Parsing error", "While executing 'getPizzeria' : ", e)
+          return@addSnapshotListener
+        }
+
+        if (value != null) {
+         val response = RatingResponse(
+            value.data?.get("name") as String?,
+            value.data?.get("addresses") as List<String>?,
+            value.data?.get("ratings") as Map<String, Long>?,
+            value.data?.get("logoUrl") as String?
+          )
+          _onPizzeriaDetailsDownloaded.value = response.toRating()
+        }
+
       }
   }
 

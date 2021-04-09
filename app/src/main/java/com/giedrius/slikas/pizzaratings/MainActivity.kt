@@ -44,5 +44,5 @@ class MainActivity : AppCompatActivity() {
     navView.setupWithNavController(navController)
   }
 
-  private fun downloadPizzerias() = homeFragmentViewModel.pizzaRepository.getPizzerias()
+  private fun downloadPizzerias() = homeFragmentViewModel.pizzaRepository.getPizzeriasList()
 }

@@ -11,7 +11,7 @@ fun HomeFragmentContent(
   viewModel: HomeFragmentViewModel,
   onItemClicked: (String) -> Unit
 ) {
-  val pizzaData = viewModel.pizzaRepository.onPizzeriasDownloaded.observeAsState().value
+  val pizzaData = viewModel.pizzaRepository.onPizzeriasListDownloaded.observeAsState().value
 
   Column {
     if (pizzaData != null) {

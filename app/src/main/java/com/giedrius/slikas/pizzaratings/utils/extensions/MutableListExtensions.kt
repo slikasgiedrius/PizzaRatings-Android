@@ -2,6 +2,7 @@ package com.giedrius.slikas.pizzaratings.utils.extensions
 
 import com.giedrius.slikas.pizzaratings.data.model.Rating
 import com.giedrius.slikas.pizzaratings.data.model.RatingResponse
+import com.giedrius.slikas.pizzaratings.utils.checkForIncompatibleTypes
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 
 @Suppress("UNCHECKED_CAST")
@@ -28,15 +29,4 @@ fun MutableList<RatingResponse>.toRating(): MutableList<Rating> {
     )
   }
   return pizzerias
-}
-
-private fun checkForIncompatibleTypes(ratings: Map<String, Long>): Map<String, Long> {
-  val mutableRatings: MutableMap<String, Long> = ratings as MutableMap<String, Long>
-  mutableRatings.forEach{
-    if (it.value !is Long) {
-      FirebaseCrashlytics.getInstance().recordException(Throwable("Key ${it.key} contains non Long type value"))
-      ratings.remove(it.key)
-    }
-  }
-  return mutableRatings.toMap()
 }

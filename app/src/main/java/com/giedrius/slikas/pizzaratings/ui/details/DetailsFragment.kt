@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.giedrius.slikas.pizzaratings.R
 import com.giedrius.slikas.pizzaratings.compose.base.PizzaRatingsTheme
 import com.giedrius.slikas.pizzaratings.ui.favourites.FavouritesFragmentViewModel
+import com.giedrius.slikas.pizzaratings.utils.extensions.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,7 +30,6 @@ class DetailsFragment : Fragment() {
       setContent {
         PizzaRatingsTheme {
           DetailsFragmentContent(
-            args.name,
             viewModel
           )
         }
@@ -40,5 +40,16 @@ class DetailsFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     viewModel = ViewModelProvider(requireActivity()).get(DetailsFragmentViewModel::class.java)
+    handleObservers()
+
+    viewModel.loadPizzeriaDetails(args.name)
   }
+
+  private fun handleObservers() {
+    viewModel.onUserNotFound.observe(viewLifecycleOwner) {
+      userIdentificationProblem()
+    }
+  }
+
+  private fun userIdentificationProblem() = requireActivity().toast("User identification problem!")
 }
