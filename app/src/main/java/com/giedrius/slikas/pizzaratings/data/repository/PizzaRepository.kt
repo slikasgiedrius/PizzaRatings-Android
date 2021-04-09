@@ -8,11 +8,13 @@ import androidx.lifecycle.MutableLiveData
 import com.giedrius.slikas.pizzaratings.data.model.Rating
 import com.giedrius.slikas.pizzaratings.data.model.RatingResponse
 import com.giedrius.slikas.pizzaratings.utils.extensions.toRating
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import javax.inject.Inject
 
 class PizzaRepository @Inject constructor(
-  private val firestore: FirebaseFirestore
+  private val firestore: FirebaseFirestore,
+  private val firebaseAuth: FirebaseAuth
 ) {
   private val _onPizzeriasDownloaded = MutableLiveData<List<Rating>>()
   val onPizzeriasDownloaded: LiveData<List<Rating>> = _onPizzeriasDownloaded
@@ -58,11 +60,26 @@ class PizzaRepository @Inject constructor(
     )
   }
 
+  fun saveUser() {
+    firebaseAuth.currentUser?.let {
+      val userData = hashMapOf(
+        FIELD_USER_UID to it.uid ,
+        FIELD_USER_NAME to it.displayName,
+        FIELD_EMAIL to it.email
+      )
+      firestore.collection(DB_USERS).document(it.uid).set(userData)
+    }
+  }
+
   companion object {
     //DBs
     private const val DB_VILNIUS = "Vilnius"
+    private const val DB_USERS = "Users"
 
     //Fields
     private const val FIELD_RATINGS = "ratings"
+    private const val FIELD_USER_UID = "id"
+    private const val FIELD_USER_NAME = "name"
+    private const val FIELD_EMAIL = "email"
   }
 }

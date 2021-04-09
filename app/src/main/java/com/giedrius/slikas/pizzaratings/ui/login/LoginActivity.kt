@@ -92,7 +92,10 @@ class LoginActivity : AppCompatActivity() {
           // Sign in success, update UI with the signed-in user's information
           Log.d("TAG", "signInWithCredential:success")
           if (viewModel.firebaseAuth.currentUser != null) {
+            viewModel.saveUser()
             launchMainActivity()
+          } else {
+            userIdentificationProblem()
           }
         } else {
           // If sign in fails, display a message to the user.
@@ -105,11 +108,6 @@ class LoginActivity : AppCompatActivity() {
   private fun signIn() {
     val signInIntent = googleSignInClient.signInIntent
     startActivityForResult(signInIntent, RC_SIGN_IN)
-  }
-
-  private fun logOut() {
-    viewModel.firebaseAuth.signOut()
-    this.toast("USER ${viewModel.firebaseAuth.currentUser?.email}")
   }
 
   private fun initGoogleSignInClient() {
@@ -126,6 +124,8 @@ class LoginActivity : AppCompatActivity() {
     startActivity(intent)
     finish()
   }
+
+  private fun userIdentificationProblem() = this.toast("User identification problem!")
 
   companion object {
     private const val RC_SIGN_IN = 9001
