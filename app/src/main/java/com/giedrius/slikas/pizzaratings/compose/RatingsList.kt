@@ -12,9 +12,9 @@ fun RatingsList(
   onItemClicked: (String) -> Unit
 ) {
   LazyColumn {
-    val sortedList = ratings
-      .sortedWith(compareByDescending { it.averageRating })
-      .sortedWith(compareByDescending { it.numberOfRatings })
+    val averageRatingComparator = compareByDescending<Rating>{ it.averageRating }
+    val fullComparator = averageRatingComparator.thenByDescending { it.numberOfRatings }
+    val sortedList = ratings.sortedWith(fullComparator)
 
     items(sortedList) { rating ->
       ListItem(
