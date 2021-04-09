@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.compose.material.Text
 import androidx.compose.ui.platform.ComposeView
 import androidx.navigation.fragment.navArgs
+import com.giedrius.slikas.pizzaratings.MainActivityViewModel
 import com.giedrius.slikas.pizzaratings.R
 import com.giedrius.slikas.pizzaratings.compose.base.PizzaRatingsTheme
 import com.giedrius.slikas.pizzaratings.ui.favourites.FavouritesFragmentViewModel

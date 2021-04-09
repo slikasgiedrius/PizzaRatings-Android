@@ -85,6 +85,13 @@ class PizzaRepository @Inject constructor(
         "$FIELD_RATINGS.$userId" to rating
       )
     )
+
+    //Save to Users DB
+    firestore.collection(DB_USERS).document(userId).update(
+      mapOf(
+        "$FIELD_RATINGS.$pizzeria" to rating
+      )
+    )
   }
 
   fun saveUser() {
