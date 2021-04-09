@@ -8,7 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailsFragmentViewModel @Inject constructor(
+class DetailsActivityViewModel @Inject constructor(
   val pizzaRepository: PizzaRepository,
   val firebaseAuth: FirebaseAuth
 ) : ViewModel() {

@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
   private fun onItemClicked(pizzeriaName: String) = navigateToDetailsFragment(pizzeriaName)
 
   private fun navigateToDetailsFragment(pizzeriaName: String) {
-    val action = HomeFragmentDirections.actionNavigationHomeToDetailsFragment(pizzeriaName)
+    val action = HomeFragmentDirections.actionHomeFragmentToDetailsActivity(pizzeriaName)
     view?.findNavController()?.navigate(action)
   }
 }

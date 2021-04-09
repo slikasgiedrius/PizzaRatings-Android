@@ -11,8 +11,8 @@ import androidx.compose.ui.unit.dp
 import com.giedrius.slikas.pizzaratings.compose.RatingSelector
 
 @Composable
-fun DetailsFragmentContent(
-  viewModel: DetailsFragmentViewModel,
+fun DetailsActivityContent(
+  viewModel: DetailsActivityViewModel,
   onRatingClicked: (Int) -> Unit
 ) {
   val pizzaData = viewModel.pizzaRepository.onPizzeriaDetailsDownloaded.observeAsState().value

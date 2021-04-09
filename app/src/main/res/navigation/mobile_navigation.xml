@@ -9,8 +9,8 @@
         android:name="com.giedrius.slikas.pizzaratings.ui.home.HomeFragment"
         android:label="@string/title_home" >
         <action
-            android:id="@+id/action_navigation_home_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            android:id="@+id/action_homeFragment_to_detailsActivity"
+            app:destination="@id/detailsActivity" />
     </fragment>
 
     <fragment
@@ -23,12 +23,13 @@
         android:name="com.giedrius.slikas.pizzaratings.ui.profile.ProfileFragment"
         android:label="@string/title_profile" />
 
-    <fragment
-        android:id="@+id/detailsFragment"
-        android:name="com.giedrius.slikas.pizzaratings.ui.details.DetailsFragment"
-        android:label="DetailsFragment">
+    <activity
+        android:id="@+id/detailsActivity"
+        android:name="com.giedrius.slikas.pizzaratings.ui.details.DetailsActivity"
+        android:label="DetailsActivity">
         <argument
             android:name="name"
             app:argType="string" />
-    </fragment>
+    </activity>
+
 </navigation>
