@@ -30,7 +30,8 @@ class DetailsFragment : Fragment() {
       setContent {
         PizzaRatingsTheme {
           DetailsFragmentContent(
-            viewModel
+            viewModel,
+            ::onRatingSelected
           )
         }
       }
@@ -50,6 +51,8 @@ class DetailsFragment : Fragment() {
       userIdentificationProblem()
     }
   }
+
+  private fun onRatingSelected(rating: Int) = viewModel.saveRating(args.name, rating)
 
   private fun userIdentificationProblem() = requireActivity().toast("User identification problem!")
 }
