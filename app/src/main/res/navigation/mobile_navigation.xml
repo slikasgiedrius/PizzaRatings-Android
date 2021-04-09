@@ -2,20 +2,33 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/homeFragment">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/homeFragment"
         android:name="com.giedrius.slikas.pizzaratings.ui.home.HomeFragment"
-        android:label="@string/title_home" />
+        android:label="@string/title_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_favourites"
+        android:id="@+id/favouritesFragment"
         android:name="com.giedrius.slikas.pizzaratings.ui.favourites.FavouritesFragment"
         android:label="@string/title_favourites" />
 
     <fragment
-        android:id="@+id/navigation_profile"
+        android:id="@+id/profileFragment"
         android:name="com.giedrius.slikas.pizzaratings.ui.profile.ProfileFragment"
         android:label="@string/title_profile" />
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.giedrius.slikas.pizzaratings.ui.details.DetailsFragment"
+        android:label="DetailsFragment">
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
 </navigation>

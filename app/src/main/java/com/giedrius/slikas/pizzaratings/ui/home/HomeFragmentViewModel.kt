@@ -18,7 +18,7 @@ class HomeFragmentViewModel @Inject constructor(
 
   private val user = firebaseAuth.currentUser
 
-  private fun saveRating(
+  fun saveRating(
     pizzeria: String,
     rating: Int
   ) {
@@ -27,12 +27,5 @@ class HomeFragmentViewModel @Inject constructor(
     } else {
       onUserNotFound.call()
     }
-  }
-
-  fun onItemClicked(pizzeriaName: String){
-    saveRating(
-      pizzeriaName,
-      randomInt()
-    )
   }
 }

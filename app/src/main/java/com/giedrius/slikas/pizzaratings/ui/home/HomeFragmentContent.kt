@@ -7,14 +7,17 @@ import androidx.compose.runtime.livedata.observeAsState
 import com.giedrius.slikas.pizzaratings.compose.RatingsList
 
 @Composable
-fun HomeFragmentContent(viewModel: HomeFragmentViewModel) {
+fun HomeFragmentContent(
+  viewModel: HomeFragmentViewModel,
+  onItemClicked: (String) -> Unit
+) {
   val pizzaData = viewModel.pizzaRepository.onPizzeriasDownloaded.observeAsState().value
 
   Column {
     if (pizzaData != null) {
       RatingsList(
         pizzaData,
-        viewModel::onItemClicked,
+        onItemClicked,
       )
     } else {
       Text("There are no pizzerias :(")

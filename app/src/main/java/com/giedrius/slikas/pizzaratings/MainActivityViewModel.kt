@@ -1,4 +1,4 @@
-package com.giedrius.slikas.pizzaratings.ui
+package com.giedrius.slikas.pizzaratings
 
 import androidx.lifecycle.ViewModel
 import com.giedrius.slikas.pizzaratings.data.repository.PizzaRepository

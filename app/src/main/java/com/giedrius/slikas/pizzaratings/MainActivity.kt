@@ -1,4 +1,4 @@
-package com.giedrius.slikas.pizzaratings.ui
+package com.giedrius.slikas.pizzaratings
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -8,7 +8,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.giedrius.slikas.pizzaratings.R
 import com.giedrius.slikas.pizzaratings.databinding.ActivityMainBinding
 import com.giedrius.slikas.pizzaratings.ui.home.HomeFragmentViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -38,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     val navController = findNavController(R.id.nav_host_fragment_activity_main)
     val appBarConfiguration = AppBarConfiguration(
       setOf(
-        R.id.navigation_home, R.id.navigation_favourites, R.id.navigation_profile
+        R.id.homeFragment, R.id.favouritesFragment, R.id.profileFragment
       )
     )
     setupActionBarWithNavController(navController, appBarConfiguration)
