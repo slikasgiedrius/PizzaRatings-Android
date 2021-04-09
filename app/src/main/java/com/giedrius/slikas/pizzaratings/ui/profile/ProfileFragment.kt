@@ -28,17 +28,10 @@ class ProfileFragment : Fragment() {
     return ComposeView(requireContext()).apply {
       setContent {
         PizzaRatingsTheme {
-          Column {
-            Text("Profile Fragment")
-            Button(onClick = {
-              viewModel.firebaseAuth.signOut()
-              val intent = Intent(context, LoginActivity::class.java)
-              intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-              startActivity(intent)
-            }) {
-              Text("Logout")
-            }
-          }
+          ProfileFragmentContent(
+            viewModel,
+            ::logout
+          )
         }
       }
     }
@@ -47,5 +40,11 @@ class ProfileFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     viewModel = ViewModelProvider(requireActivity()).get(ProfileFragmentViewModel::class.java)
+  }
+
+  private fun logout() {
+    val intent = Intent(context, LoginActivity::class.java)
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+    startActivity(intent)
   }
 }
