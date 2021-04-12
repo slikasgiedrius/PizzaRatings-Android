@@ -16,7 +16,8 @@ fun AverageRatingCell(
     else -> {
       Text(
         text = "$averageRating average rating",
-        style = MaterialTheme.typography.subtitle1
+        style = MaterialTheme.typography.subtitle1,
+        color = MaterialTheme.colors.onSurface
       )
     }
   }

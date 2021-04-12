@@ -27,8 +27,10 @@ fun DetailsActivityContent(
       Spacer(modifier = Modifier.height(4.dp))
       viewModel.firebaseAuth.currentUser?.let {
         Text("My user id: ${it.uid}")
-        val myRating = pizzaData.ratings.getValue(it.uid)
-        Text("My rating is $myRating")
+        if (pizzaData.ratings.containsKey(it.uid)) {
+          val myRating = pizzaData.ratings.getValue(it.uid)
+          Text("My rating is $myRating")
+        }
       }
       Spacer(modifier = Modifier.height(4.dp))
       RatingSelector(
