@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "613819608714-2c7mls15hmu3d9dq88d49rlcl52t7cn1.apps.googleusercontent.com",
+          "client_id": "613819608714-a57bbude9g7bq9hpq865qd8b0u1gi74d.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.giedrius.slikas.pizzaratings",
-            "certificate_hash": "d39654d9348dcb0cf1a810967c78c1d3c0e8fd0f"
+            "certificate_hash": "7d0fdc50bd5e08aa1218a3fcbcf881de8d58cbba"
           }
         },
         {
