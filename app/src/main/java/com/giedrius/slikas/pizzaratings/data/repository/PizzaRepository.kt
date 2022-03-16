@@ -8,6 +8,7 @@ import com.giedrius.slikas.pizzaratings.data.model.RatingResponse
 import com.giedrius.slikas.pizzaratings.utils.extensions.toRating
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.util.*
 import javax.inject.Inject
 
 class PizzaRepository @Inject constructor(
@@ -17,6 +18,7 @@ class PizzaRepository @Inject constructor(
   //List
   private val _onPizzeriasListDownloaded = MutableLiveData<List<Rating>>()
   val onPizzeriasListDownloaded: LiveData<List<Rating>> = _onPizzeriasListDownloaded
+
   //Details
   private val _onPizzeriaDetailsDownloaded = MutableLiveData<Rating>()
   val onPizzeriaDetailsDownloaded: LiveData<Rating> = _onPizzeriaDetailsDownloaded
