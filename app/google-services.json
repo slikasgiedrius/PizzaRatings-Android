@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "613819608714-a57bbude9g7bq9hpq865qd8b0u1gi74d.apps.googleusercontent.com",
+          "client_id": "613819608714-pvvk0o94tj62925vc4p51bbkl2uhn5da.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.giedrius.slikas.pizzaratings",
-            "certificate_hash": "7d0fdc50bd5e08aa1218a3fcbcf881de8d58cbba"
+            "certificate_hash": "c55fc40bee26888b29e3ecb72654f2a2c7837f1d"
           }
         },
         {
@@ -37,6 +37,13 @@
             {
               "client_id": "613819608714-ctt6jgsrt9h7hn6fpksvd8vdj4d30juj.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "613819608714-2olsis4gtmf8vav9tf9l4e7rn3r1fl5c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.giedriusslikas.PizzaRatings-iOS"
+              }
             }
           ]
         }

@@ -11,16 +11,10 @@ plugins {
 android {
     signingConfigs {
         debug {
-            storeFile file('/Users/giedriusslikas/PizzaRatingsKeyStore')
-            storePassword 'Adidas123'
+            storeFile file('/Users/BE5414/Documents/PizzaRatingsKeyStore')
+            storePassword 'Adidas'
             keyAlias 'key0'
-            keyPassword 'Adidas123'
-        }
-        release {
-            storeFile file('/Users/giedriusslikas/PizzaRatingsKeyStore')
-            storePassword 'Adidas123'
-            keyAlias 'key0'
-            keyPassword 'Adidas123'
+            keyPassword 'Adidas'
         }
     }
     compileSdkVersion 31
