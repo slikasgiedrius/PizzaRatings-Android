@@ -1,4 +1,4 @@
-# PizzaRatings
+# PizzaRatings-Android
 
 ![Build Project](https://github.com/slikasgiedrius/PizzaRatings-Android/workflows/Build%20Project/badge.svg)
  
