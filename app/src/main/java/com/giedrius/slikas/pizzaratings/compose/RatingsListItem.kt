@@ -60,6 +60,7 @@ fun ListItem(
 fun PreviewListItem() {
   ListItem(
     Rating(
+      id = "45345231231",
       name = "Pizza & Nachos Pub",
       addresses = listOf("Linkmenų g.4, Vilnius 09300"),
       ratings = mapOf(),

@@ -39,6 +39,7 @@ fun PreviewRatingsList() {
   RatingsList(
     ratings = listOf(
       Rating(
+        id = "12321456456456",
         name = "Pizza & Nachos Pub",
         addresses = listOf("Linkmenų g.4, Vilnius 09300"),
         ratings = mapOf(

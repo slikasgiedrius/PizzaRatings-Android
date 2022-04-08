@@ -28,7 +28,7 @@ class PizzaRepository @Inject constructor(
     val response = mutableListOf<RatingResponse>()
 
     firestore
-      .collection(DB_VILNIUS)
+      .collection(DB_RESTAURANTS)
       .addSnapshotListener { value, e ->
         if (e != null) {
           Log.w("Parsing error", "While executing 'getPizzeriasList' : ", e)
@@ -39,10 +39,11 @@ class PizzaRepository @Inject constructor(
         for (item in value!!) {
           response.add(
             RatingResponse(
-              item.data["name"] as String?,
-              item.data["addresses"] as List<String>?,
-              item.data["ratings"] as Map<String, Long>?,
-              item.data["logoUrl"] as String?
+              id = item["id"] as String?,
+              name = item.data["name"] as String?,
+              addresses = item.data["addresses"] as List<String>?,
+              ratings = item.data["ratings"] as Map<String, Long>?,
+              logoUrl = item.data["logoUrl"] as String?
             )
           )
         }
@@ -55,7 +56,7 @@ class PizzaRepository @Inject constructor(
   fun getPizzeria(pizzeria: String) {
 
     firestore
-      .collection(DB_VILNIUS)
+      .collection(DB_RESTAURANTS)
       .document(pizzeria)
       .addSnapshotListener { value, e ->
         if (e != null) {
@@ -64,11 +65,12 @@ class PizzaRepository @Inject constructor(
         }
 
         if (value != null) {
-         val response = RatingResponse(
-            value.data?.get("name") as String?,
-            value.data?.get("addresses") as List<String>?,
-            value.data?.get("ratings") as Map<String, Long>?,
-            value.data?.get("logoUrl") as String?
+          val response = RatingResponse(
+            id = value.data?.get("id") as String?,
+            name = value.data?.get("name") as String?,
+            addresses = value.data?.get("addresses") as List<String>?,
+            ratings = value.data?.get("ratings") as Map<String, Long>?,
+            logoUrl = value.data?.get("logoUrl") as String?
           )
           _onPizzeriaDetailsDownloaded.value = response.toRating()
         }
@@ -82,7 +84,7 @@ class PizzaRepository @Inject constructor(
     rating: Int
   ) {
     //Save to Vilnius DB
-    firestore.collection(DB_VILNIUS).document(pizzeria).update(
+    firestore.collection(DB_RESTAURANTS).document(pizzeria).update(
       mapOf(
         "$FIELD_RATINGS.$userId" to rating
       )
@@ -99,7 +101,7 @@ class PizzaRepository @Inject constructor(
   fun saveUser() {
     firebaseAuth.currentUser?.let {
       val userData = hashMapOf(
-        FIELD_USER_UID to it.uid ,
+        FIELD_USER_UID to it.uid,
         FIELD_USER_NAME to it.displayName,
         FIELD_EMAIL to it.email
       )
@@ -110,6 +112,7 @@ class PizzaRepository @Inject constructor(
   companion object {
     //DBs
     private const val DB_VILNIUS = "Vilnius"
+    private const val DB_RESTAURANTS = "Restaurants"
     private const val DB_USERS = "Users"
 
     //Fields
