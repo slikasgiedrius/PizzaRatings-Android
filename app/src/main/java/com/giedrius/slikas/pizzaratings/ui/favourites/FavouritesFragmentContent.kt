@@ -16,6 +16,6 @@ fun FavouritesFragmentContent(
 ) {
 
   Card(Modifier.padding(8.dp),elevation = 8.dp){
-    Text("This is a Card")
+    Text("This is not a Card, heheh")
   }
 }
