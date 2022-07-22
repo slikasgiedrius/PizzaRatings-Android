@@ -5,19 +5,22 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.tooling.preview.Preview
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.giedrius.slikas.pizzaratings.R
 import com.giedrius.slikas.pizzaratings.compose.RatingsList
+import com.giedrius.slikas.pizzaratings.data.model.Rating
+import com.giedrius.slikas.pizzaratings.data.repository.PizzaRepository
+import com.giedrius.slikas.pizzaratings.utils.mocks.getMockedRatings
 
 @Composable
 fun HomeFragmentContent(
-  viewModel: HomeFragmentViewModel,
+  pizzaData: List<Rating>?,
   onItemClicked: (String) -> Unit
 ) {
-  val pizzaData = viewModel.pizzaRepository.onPizzeriasListDownloaded.observeAsState().value
 
   Column {
     if (pizzaData != null) {
@@ -40,4 +43,22 @@ fun HomeFragmentContent(
       }
     }
   }
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun PreviewHomeFragmentContent() {
+  HomeFragmentContent(
+    pizzaData = getMockedRatings(),
+    onItemClicked = { }
+  )
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun PreviewHomeFragmentContentWithNullData() {
+  HomeFragmentContent(
+    pizzaData = null,
+    onItemClicked = { }
+  )
 }
