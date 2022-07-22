@@ -1,5 +1,6 @@
 package com.giedrius.slikas.pizzaratings.compose
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -12,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.AsyncImage
 
+@ExperimentalCoilApi
 @Composable
 fun PizzeriaLogo(logoUrl: String) {
   AsyncImage(
