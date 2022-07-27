@@ -11,7 +11,9 @@ fun MutableList<RatingResponse>.toRating(): MutableList<Rating> {
 
   for (item in this) {
     var ratings = item.ratings ?: emptyMap()
-    ratings = checkForIncompatibleTypes(ratings)
+    if (ratings.isNotEmpty()) {
+      ratings = checkForIncompatibleTypes(ratings)
+    }
 
     val numberOfRatings = ratings.size
     val sumOfRatings = ratings.map { it.value }.sum()
@@ -19,12 +21,13 @@ fun MutableList<RatingResponse>.toRating(): MutableList<Rating> {
 
     pizzerias.add(
       Rating(
-        item.name ?: "No name pizzeria",
-        item.addresses ?: emptyList(),
-        item.ratings as Map<String, Int>? ?: mapOf(),
-        numberOfRatings,
-        averageRating.roundTo(2),
-        item.logoUrl ?: ""
+        id = item.id ?: "",
+        name = item.name ?: "No name pizzeria",
+        addresses = item.addresses ?: emptyList(),
+        ratings = item.ratings as Map<String, Int>? ?: mapOf(),
+        numberOfRatings = numberOfRatings,
+        averageRating = averageRating.roundTo(2),
+        logoUrl = item.logoUrl ?: ""
       )
     )
   }

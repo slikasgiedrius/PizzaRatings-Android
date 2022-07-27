@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -25,7 +26,7 @@ class HomeFragment : Fragment() {
       setContent {
         PizzaRatingsTheme {
           HomeFragmentContent(
-            viewModel,
+            viewModel.pizzaRepository.onPizzeriasListDownloaded.observeAsState().value,
             ::onItemClicked
           )
         }

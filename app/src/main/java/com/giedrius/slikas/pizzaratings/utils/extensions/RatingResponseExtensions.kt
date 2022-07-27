@@ -7,13 +7,16 @@ import com.giedrius.slikas.pizzaratings.utils.checkForIncompatibleTypes
 @Suppress("UNCHECKED_CAST")
 fun RatingResponse.toRating(): Rating {
   var ratings = this.ratings ?: emptyMap()
-  ratings = checkForIncompatibleTypes(ratings)
+  if (ratings.isNotEmpty()) {
+    ratings = checkForIncompatibleTypes(ratings)
+  }
 
   val numberOfRatings = ratings.size
   val sumOfRatings = ratings.map { it.value }.sum()
   val averageRating = sumOfRatings.toDouble() / numberOfRatings
 
   return Rating(
+    id = this.id ?: "",
     name = this.name ?: "",
     addresses = this.addresses ?: emptyList(),
     ratings = this.ratings as Map<String, Int>? ?: mapOf(),
