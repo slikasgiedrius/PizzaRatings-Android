@@ -43,11 +43,9 @@ class DetailsActivity : AppCompatActivity() {
     }
   }
 
-  private fun onRatingSelected(rating: Int) = viewModel.saveRating(args.name, rating)
+  private fun onRatingSelected(rating: Int) = viewModel.saveRating(rating)
 
-  private fun onMakeFavouriteSelected() {
-    //To be implemented
-  }
+  private fun onMakeFavouriteSelected() = viewModel.makeFavourite()
 
   private fun userIdentificationProblem() = this.toast("User identification problem!")
 }

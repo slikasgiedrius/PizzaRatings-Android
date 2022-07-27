@@ -7,6 +7,7 @@ import com.giedrius.slikas.pizzaratings.data.model.Rating
 import com.giedrius.slikas.pizzaratings.data.model.RatingResponse
 import com.giedrius.slikas.pizzaratings.data.model.UserData
 import com.giedrius.slikas.pizzaratings.utils.extensions.toRating
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import javax.inject.Inject
 
@@ -83,7 +84,7 @@ class PizzaRepository @Inject constructor(
     pizzeria: String,
     rating: Int
   ) {
-    //Save to Vilnius DB
+    //Save
     firestore.collection(DB_RESTAURANTS).document(pizzeria).update(
       mapOf(
         "$FIELD_RATINGS.$userId" to rating
@@ -96,6 +97,17 @@ class PizzaRepository @Inject constructor(
         "$FIELD_RATINGS.$pizzeria" to rating
       )
     )
+  }
+
+  fun makeFavourite(
+    userId: String,
+    pizzeriaName: String
+  ) {
+    //Save users id under Pizzeria profile
+    firestore.collection(DB_RESTAURANTS).document(pizzeriaName).update(FIELD_FAVOURITED, FieldValue.arrayUnion(userId))
+
+    //Save favourite pizzeria name under Users DB
+    firestore.collection(DB_USERS).document(userId).update(FIELD_FAVOURITES, FieldValue.arrayUnion(pizzeriaName))
   }
 
   fun saveUser(userData: UserData) {
@@ -120,5 +132,7 @@ class PizzaRepository @Inject constructor(
     private const val FIELD_USER_UID = "id"
     private const val FIELD_USER_NAME = "name"
     private const val FIELD_EMAIL = "email"
+    private const val FIELD_FAVOURITES = "favourites"
+    private const val FIELD_FAVOURITED = "favourited"
   }
 }

@@ -19,12 +19,24 @@ class DetailsActivityViewModel @Inject constructor(
     pizzaRepository.getPizzeria(pizzeria)
   }
 
-  fun saveRating(
-    pizzeria: String,
-    rating: Int
-  ) {
+  fun saveRating(rating: Int) {
     if (user.uid != null) {
-      pizzaRepository.saveRating(user.uid, pizzeria, rating)
+      pizzaRepository.onPizzeriaDetailsDownloaded.value?.let {
+        pizzaRepository.saveRating(user.uid, it.name, rating)
+      }
+    } else {
+      onUserNotFound.call()
+    }
+  }
+
+  fun makeFavourite() {
+    if (user.uid != null) {
+      pizzaRepository.onPizzeriaDetailsDownloaded.value?.let {
+        pizzaRepository.makeFavourite(
+          userId = user.uid,
+          pizzeriaName = it.name
+        )
+      }
     } else {
       onUserNotFound.call()
     }
