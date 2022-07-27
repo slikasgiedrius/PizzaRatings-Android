@@ -1,6 +1,5 @@
 package com.giedrius.slikas.pizzaratings.ui.profile
 
-import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -19,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.giedrius.slikas.pizzaratings.data.model.UserData
 import com.giedrius.slikas.pizzaratings.utils.mocks.getMockedUserData
-import com.google.firebase.auth.FirebaseUser
 
 @Composable
 fun ProfileFragmentContent(
@@ -28,7 +26,9 @@ fun ProfileFragmentContent(
 ) {
   Surface {
     Column(
-      modifier = Modifier.fillMaxWidth(),
+      modifier = Modifier
+        .fillMaxWidth()
+        .padding(all = 16.dp),
       horizontalAlignment = Alignment.CenterHorizontally
     ) {
       val logoUrl = userData.photoUrl?.toString()

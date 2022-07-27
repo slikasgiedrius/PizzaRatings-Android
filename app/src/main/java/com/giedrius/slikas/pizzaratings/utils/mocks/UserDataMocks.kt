@@ -9,6 +9,6 @@ fun getMockedUserData(): UserData {
     name = "Giedrius",
     email = "slikas.giedrius@gmail.com",
     phoneNumber = "+37063771062",
-    photoUrl = Uri.EMPTY
+    photoUrl = Uri.parse("https://drive.google.com/thumbnail?id=1jgJb_Ev4QeAbYTv-q2lnbXW7SieLAqNq")
   )
 }
