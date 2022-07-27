@@ -23,7 +23,7 @@ class FavouritesFragment : Fragment() {
     return ComposeView(requireContext()).apply {
       setContent {
         PizzaRatingsTheme {
-          FavouritesFragmentContent(viewModel)
+          FavouritesFragmentContent()
         }
       }
     }

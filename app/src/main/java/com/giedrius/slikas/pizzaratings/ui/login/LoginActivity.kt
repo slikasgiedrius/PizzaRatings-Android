@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
     setContent {
       PizzaRatingsTheme {
         Column(modifier = Modifier.padding(16.dp)) {
-          Text("User email ${viewModel.firebaseAuth.currentUser?.email}")
+          Text("User email ${viewModel.getCurrentUser()?.email}")
           GoogleButton(::signIn)
         }
       }
@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
 
   override fun onStart() {
     super.onStart()
-    if (viewModel.firebaseAuth.currentUser != null) {
+    if (viewModel.getCurrentUser() != null) {
       launchMainActivity()
     }
   }
@@ -71,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
   }
 
   private fun updateUI() {
-    this.toast("USER ${viewModel.firebaseAuth.currentUser?.email}")
+    this.toast("USER ${viewModel.getCurrentUser()?.email}")
   }
 
   private fun firebaseAuthWithGoogle(idToken: String) {
@@ -81,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
         if (task.isSuccessful) {
           // Sign in success, update UI with the signed-in user's information
           Log.d("TAG", "signInWithCredential:success")
-          if (viewModel.firebaseAuth.currentUser != null) {
+          if (viewModel.getCurrentUser() != null) {
             viewModel.saveUser()
             launchMainActivity()
           } else {

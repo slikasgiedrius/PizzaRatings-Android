@@ -8,6 +8,8 @@ class UserRepository @Inject constructor(
   private val firebaseAuth: FirebaseAuth
 ) {
 
+  fun getCurrentUser() = firebaseAuth.currentUser
+
   fun getCurrentUserData(): UserData {
     return UserData(
       uid = firebaseAuth.currentUser?.uid,

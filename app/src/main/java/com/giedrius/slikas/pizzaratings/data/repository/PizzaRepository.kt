@@ -8,7 +8,6 @@ import com.giedrius.slikas.pizzaratings.data.model.RatingResponse
 import com.giedrius.slikas.pizzaratings.utils.extensions.toRating
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import java.util.*
 import javax.inject.Inject
 
 class PizzaRepository @Inject constructor(

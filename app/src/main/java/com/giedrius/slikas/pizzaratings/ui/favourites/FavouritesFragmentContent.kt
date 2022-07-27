@@ -11,10 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun FavouritesFragmentContent(
-  viewModel: FavouritesFragmentViewModel
-) {
-
+fun FavouritesFragmentContent() {
   Card(Modifier.padding(8.dp),elevation = 8.dp){
     Text("This is not a Card, heheh")
   }
