@@ -14,7 +14,7 @@ class LoginActivityViewModel @Inject constructor(
   private val userRepository: UserRepository
 ) : ViewModel() {
 
-  fun saveUser() = pizzaRepository.saveUser()
+  fun saveUser() = pizzaRepository.saveUser(userRepository.getCurrentUserData())
 
   fun getCurrentUser() = userRepository.getCurrentUser()
 }
