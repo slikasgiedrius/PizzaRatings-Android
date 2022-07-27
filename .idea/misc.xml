@@ -62,24 +62,12 @@
         <entry key="../../../../layout/compose-model-1618235695699.xml" value="0.1" />
         <entry key="../../../../layout/compose-model-1618235699139.xml" value="0.1" />
         <entry key="../../../../layout/compose-model-1618235783643.xml" value="0.1" />
-        <entry key="../../../../layout/compose-model-1647441203494.xml" value="0.6406685236768802" />
-        <entry key="../../../../layout/compose-model-1647441236772.xml" value="1.0454545454545454" />
-        <entry key="../../../../layout/compose-model-1647441248915.xml" value="1.270718232044199" />
-        <entry key="../../../../layout/compose-model-1647441260145.xml" value="0.21296296296296297" />
-        <entry key="../../../../layout/compose-model-1647441269824.xml" value="0.21296296296296297" />
-        <entry key="../../../../layout/compose-model-1647441282478.xml" value="0.21296296296296297" />
-        <entry key="../../../../layout/compose-model-1647441450356.xml" value="1.0454545454545454" />
-        <entry key="../../../../layout/compose-model-1649671085598.xml" value="2.0" />
-        <entry key="../../../../layout/compose-model-1649671283841.xml" value="2.0" />
-        <entry key="../../../../layout/compose-model-1658402285073.xml" value="0.25" />
-        <entry key="../../../../layout/compose-model-1658494042478.xml" value="0.1" />
-        <entry key="../../../../layout/compose-model-1658494241220.xml" value="0.25" />
-        <entry key="../../../../layout/compose-model-1658497375499.xml" value="0.225752508361204" />
+        <entry key="../../../../layout/compose-model-1658903001050.xml" value="0.25" />
         <entry key="../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.2101851851851852" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3411458333333333" />
         <entry key="app/src/main/res/layout/activity_login2.xml" value="0.32708333333333334" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3421875" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3421875" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.17777777777777778" />

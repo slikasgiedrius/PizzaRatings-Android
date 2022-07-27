@@ -1,6 +1,6 @@
 package com.giedrius.slikas.pizzaratings.ui.profile
 
-import androidx.compose.animation.fadeIn
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -14,14 +14,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
+import com.giedrius.slikas.pizzaratings.data.model.UserData
+import com.google.firebase.auth.FirebaseUser
 
-@ExperimentalCoilApi
 @Composable
 fun ProfileFragmentContent(
-  viewModel: ProfileFragmentViewModel,
+  userData: UserData,
   logout: () -> Unit
 ) {
   Surface {
@@ -29,7 +30,7 @@ fun ProfileFragmentContent(
       modifier = Modifier.fillMaxWidth(),
       horizontalAlignment = Alignment.CenterHorizontally
     ) {
-      val logoUrl = viewModel.firebaseAuth.currentUser?.photoUrl.toString()
+      val logoUrl = userData.photoUrl?.toString()
 
       Image(
         painter = rememberImagePainter(
@@ -45,9 +46,9 @@ fun ProfileFragmentContent(
           .clip(CircleShape)
           .border(2.dp, Color.Gray, CircleShape)
       )
-      viewModel.firebaseAuth.currentUser?.displayName?.let { Text(it) }
-      viewModel.firebaseAuth.currentUser?.email?.let { Text(it) }
-      viewModel.firebaseAuth.currentUser?.uid?.let { Text(it) }
+      userData.name?.let { Text(it) }
+      userData.email?.let { Text(it) }
+      userData.uid?.let { Text(it) }
       Column(
         modifier = Modifier
           .fillMaxSize()
@@ -56,7 +57,6 @@ fun ProfileFragmentContent(
       ) {
         Button(
           onClick = {
-            viewModel.firebaseAuth.signOut()
             logout()
           },
           modifier = Modifier.fillMaxWidth()
@@ -66,4 +66,19 @@ fun ProfileFragmentContent(
       }
     }
   }
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun  PreviewProfileFragmentContent() {
+  ProfileFragmentContent(
+    userData = UserData(
+      uid = "1230",
+      name = "Giedrius",
+      email = "slikas.giedrius@gmail.com",
+      phoneNumber = "+37063771062",
+      photoUrl = Uri.EMPTY
+    ),
+    logout = {}
+  )
 }

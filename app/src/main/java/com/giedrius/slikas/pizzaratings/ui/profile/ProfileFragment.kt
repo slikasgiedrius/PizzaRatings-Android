@@ -29,8 +29,8 @@ class ProfileFragment : Fragment() {
       setContent {
         PizzaRatingsTheme {
           ProfileFragmentContent(
-            viewModel,
-            ::logout
+            userData = viewModel.getCurrentUserData(),
+            logout = ::logout
           )
         }
       }
@@ -43,6 +43,7 @@ class ProfileFragment : Fragment() {
   }
 
   private fun logout() {
+    viewModel.firebaseAuth.signOut()
     val intent = Intent(context, LoginActivity::class.java)
     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
     startActivity(intent)
