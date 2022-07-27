@@ -1,11 +1,10 @@
 package com.giedrius.slikas.pizzaratings.ui.details
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material.Text
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.navigation.navArgs
 import com.giedrius.slikas.pizzaratings.compose.base.PizzaRatingsTheme
 import com.giedrius.slikas.pizzaratings.utils.extensions.toast
@@ -22,8 +21,9 @@ class DetailsActivity : AppCompatActivity() {
     setContent {
       PizzaRatingsTheme {
         DetailsActivityContent(
-          viewModel,
-          ::onRatingSelected
+          pizzeriaDetails = viewModel.pizzaRepository.onPizzeriaDetailsDownloaded.observeAsState().value,
+          onRatingClicked = ::onRatingSelected,
+          userData = viewModel.userRepository.getCurrentUserData()
         )
       }
     }

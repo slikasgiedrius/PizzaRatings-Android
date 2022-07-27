@@ -2,6 +2,7 @@ package com.giedrius.slikas.pizzaratings.ui.details
 
 import androidx.lifecycle.ViewModel
 import com.giedrius.slikas.pizzaratings.data.repository.PizzaRepository
+import com.giedrius.slikas.pizzaratings.data.repository.UserRepository
 import com.giedrius.slikas.pizzaratings.utils.SingleLiveEvent
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,10 +11,10 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailsActivityViewModel @Inject constructor(
   val pizzaRepository: PizzaRepository,
-  val firebaseAuth: FirebaseAuth
+  val userRepository: UserRepository
 ) : ViewModel() {
   val onUserNotFound = SingleLiveEvent<Unit>()
-  private val user = firebaseAuth.currentUser
+  private val user = userRepository.getCurrentUserData()
 
   fun loadPizzeriaDetails(pizzeria: String) = pizzaRepository.getPizzeria(pizzeria)
 
@@ -21,7 +22,7 @@ class DetailsActivityViewModel @Inject constructor(
     pizzeria: String,
     rating: Int
   ) {
-    if (user != null) {
+    if (user.uid != null) {
       pizzaRepository.saveRating(user.uid, pizzeria, rating)
     } else {
       onUserNotFound.call()

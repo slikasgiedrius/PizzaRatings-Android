@@ -9,26 +9,27 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.giedrius.slikas.pizzaratings.compose.RatingSelector
+import com.giedrius.slikas.pizzaratings.data.model.Rating
+import com.giedrius.slikas.pizzaratings.data.model.UserData
 
 @Composable
 fun DetailsActivityContent(
-  viewModel: DetailsActivityViewModel,
-  onRatingClicked: (Int) -> Unit
+  pizzeriaDetails: Rating?,
+  onRatingClicked: (Int) -> Unit,
+  userData: UserData
 ) {
-  val pizzaData = viewModel.pizzaRepository.onPizzeriaDetailsDownloaded.observeAsState().value
-
-  if (pizzaData != null) {
+  if (pizzeriaDetails != null) {
     Column {
-      Text("Pizzeria selected: ${pizzaData.name}")
-      Text("Average rating: ${pizzaData.averageRating}")
-      Text("Number of ratings: ${pizzaData.numberOfRatings}")
-      Text("Addresses: ${pizzaData.addresses}")
-      Text("Ratings: ${pizzaData.ratings}")
+      Text("Pizzeria selected: ${pizzeriaDetails.name}")
+      Text("Average rating: ${pizzeriaDetails.averageRating}")
+      Text("Number of ratings: ${pizzeriaDetails.numberOfRatings}")
+      Text("Addresses: ${pizzeriaDetails.addresses}")
+      Text("Ratings: ${pizzeriaDetails.ratings}")
       Spacer(modifier = Modifier.height(4.dp))
-      viewModel.firebaseAuth.currentUser?.let {
+      userData.let {
         Text("My user id: ${it.uid}")
-        if (pizzaData.ratings.containsKey(it.uid)) {
-          val myRating = pizzaData.ratings.getValue(it.uid)
+        if (it.uid != null && pizzeriaDetails.ratings.containsKey(it.uid)) {
+          val myRating = pizzeriaDetails.ratings.getValue(it.uid)
           Text("My rating is $myRating")
         }
       }
