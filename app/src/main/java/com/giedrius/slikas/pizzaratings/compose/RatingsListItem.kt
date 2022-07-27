@@ -13,6 +13,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.giedrius.slikas.pizzaratings.data.model.Rating
+import com.giedrius.slikas.pizzaratings.utils.mocks.getMockedRatings
 
 @Composable
 fun ListItem(
@@ -59,15 +60,7 @@ fun ListItem(
 @Composable
 fun PreviewListItem() {
   ListItem(
-    Rating(
-      id = "45345231231",
-      name = "Pizza & Nachos Pub",
-      addresses = listOf("Linkmenų g.4, Vilnius 09300"),
-      ratings = mapOf(),
-      numberOfRatings = 0,
-      averageRating = 3.0,
-      logoUrl = "https://drive.google.com/thumbnail?id=1jgJb_Ev4QeAbYTv-q2lnbXW7SieLAqNq"
-    ),
+    getMockedRatings().first(),
     onItemClicked = { }
   )
 }

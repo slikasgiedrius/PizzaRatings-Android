@@ -7,5 +7,6 @@ data class Rating(
   val ratings: Map<String, Int>,
   val numberOfRatings: Int,
   val averageRating: Double,
-  val logoUrl: String
+  val logoUrl: String,
+  val favourited: List<String>
 )

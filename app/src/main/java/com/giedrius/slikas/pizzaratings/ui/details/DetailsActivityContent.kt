@@ -3,20 +3,32 @@ package com.giedrius.slikas.pizzaratings.ui.details
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.twotone.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.giedrius.slikas.pizzaratings.compose.RatingSelector
 import com.giedrius.slikas.pizzaratings.data.model.Rating
 import com.giedrius.slikas.pizzaratings.data.model.UserData
+import com.giedrius.slikas.pizzaratings.utils.mocks.getMockedRatings
+import com.giedrius.slikas.pizzaratings.utils.mocks.getMockedUserData
 
 @Composable
 fun DetailsActivityContent(
   pizzeriaDetails: Rating?,
   onRatingClicked: (Int) -> Unit,
-  userData: UserData
+  userData: UserData,
+  onMakeFavouriteClicked: () -> Unit
 ) {
   if (pizzeriaDetails != null) {
     Column {
@@ -24,6 +36,7 @@ fun DetailsActivityContent(
       Text("Average rating: ${pizzeriaDetails.averageRating}")
       Text("Number of ratings: ${pizzeriaDetails.numberOfRatings}")
       Text("Addresses: ${pizzeriaDetails.addresses}")
+      Text("Favourited by: ${pizzeriaDetails.favourited}")
       Text("Ratings: ${pizzeriaDetails.ratings}")
       Spacer(modifier = Modifier.height(4.dp))
       userData.let {
@@ -37,8 +50,41 @@ fun DetailsActivityContent(
       RatingSelector(
         onRatingClicked = onRatingClicked
       )
+
+      userData.let {
+        val isFavouritedByMe = it.uid != null && pizzeriaDetails.favourited.contains(it.uid)
+
+        if (isFavouritedByMe) {
+          Icon(
+            Icons.Filled.Favorite,
+            contentDescription = "Favorite",
+            modifier = Modifier.size(ButtonDefaults.IconSize)
+          )
+        } else {
+          Icon(
+            Icons.TwoTone.Favorite,
+            contentDescription = "Favorite",
+            modifier = Modifier.size(ButtonDefaults.IconSize)
+          )
+        }
+      }
+
+      Button(onClick = { onMakeFavouriteClicked() }) {
+        Text(text = "Make favourite")
+      }
     }
   } else {
     Text("Can't fetch pizzerias data :(")
   }
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun PreviewDetailsActivityContent() {
+  DetailsActivityContent(
+    pizzeriaDetails = getMockedRatings().first(),
+    onRatingClicked = {},
+    userData = getMockedUserData(),
+    onMakeFavouriteClicked = {}
+  )
 }

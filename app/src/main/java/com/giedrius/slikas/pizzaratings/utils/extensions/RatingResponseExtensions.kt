@@ -22,6 +22,7 @@ fun RatingResponse.toRating(): Rating {
     ratings = this.ratings as Map<String, Int>? ?: mapOf(),
     numberOfRatings,
     averageRating.roundTo(2),
-    this.logoUrl ?: ""
+    this.logoUrl ?: "",
+    favourited = this.favourited ?: emptyList()
   )
 }

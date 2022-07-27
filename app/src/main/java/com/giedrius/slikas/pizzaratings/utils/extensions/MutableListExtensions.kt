@@ -27,7 +27,8 @@ fun MutableList<RatingResponse>.toRating(): MutableList<Rating> {
         ratings = item.ratings as Map<String, Int>? ?: mapOf(),
         numberOfRatings = numberOfRatings,
         averageRating = averageRating.roundTo(2),
-        logoUrl = item.logoUrl ?: ""
+        logoUrl = item.logoUrl ?: "",
+        favourited = item.favourited ?: emptyList()
       )
     )
   }

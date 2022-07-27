@@ -23,7 +23,8 @@ class DetailsActivity : AppCompatActivity() {
         DetailsActivityContent(
           pizzeriaDetails = viewModel.pizzaRepository.onPizzeriaDetailsDownloaded.observeAsState().value,
           onRatingClicked = ::onRatingSelected,
-          userData = viewModel.userRepository.getCurrentUserData()
+          userData = viewModel.userRepository.getCurrentUserData(),
+          onMakeFavouriteClicked = ::onMakeFavouriteSelected
         )
       }
     }
@@ -43,6 +44,10 @@ class DetailsActivity : AppCompatActivity() {
   }
 
   private fun onRatingSelected(rating: Int) = viewModel.saveRating(args.name, rating)
+
+  private fun onMakeFavouriteSelected() {
+    //To be implemented
+  }
 
   private fun userIdentificationProblem() = this.toast("User identification problem!")
 }

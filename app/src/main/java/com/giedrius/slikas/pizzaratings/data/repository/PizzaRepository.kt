@@ -42,7 +42,8 @@ class PizzaRepository @Inject constructor(
               name = item.data["name"] as String?,
               addresses = item.data["addresses"] as List<String>?,
               ratings = item.data["ratings"] as Map<String, Long>?,
-              logoUrl = item.data["logoUrl"] as String?
+              logoUrl = item.data["logoUrl"] as String?,
+              favourited = item.data["favourited"] as List<String>?
             )
           )
         }
@@ -69,7 +70,8 @@ class PizzaRepository @Inject constructor(
             name = value.data?.get("name") as String?,
             addresses = value.data?.get("addresses") as List<String>?,
             ratings = value.data?.get("ratings") as Map<String, Long>?,
-            logoUrl = value.data?.get("logoUrl") as String?
+            logoUrl = value.data?.get("logoUrl") as String?,
+            favourited = value.data?.get("favourited") as List<String>?
           )
           _onPizzeriaDetailsDownloaded.value = response.toRating()
         }
@@ -102,7 +104,7 @@ class PizzaRepository @Inject constructor(
       val userData = hashMapOf(
         FIELD_USER_UID to it.uid,
         FIELD_USER_NAME to it.displayName,
-        FIELD_EMAIL to it.email
+        FIELD_EMAIL to it.email,
       )
       firestore.collection(DB_USERS).document(it.uid).set(userData)
     }

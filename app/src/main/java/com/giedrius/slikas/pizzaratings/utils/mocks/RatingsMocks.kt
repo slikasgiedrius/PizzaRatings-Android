@@ -12,6 +12,7 @@ fun getMockedRatings(): List<Rating> = listOf(
     ),
     numberOfRatings = 1,
     averageRating = 3.0,
-    logoUrl = "https://drive.google.com/thumbnail?id=1jgJb_Ev4QeAbYTv-q2lnbXW7SieLAqNq"
+    logoUrl = "https://drive.google.com/thumbnail?id=1jgJb_Ev4QeAbYTv-q2lnbXW7SieLAqNq",
+    favourited = emptyList()
   )
 )

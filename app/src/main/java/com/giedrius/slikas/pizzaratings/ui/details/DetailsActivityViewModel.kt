@@ -15,7 +15,9 @@ class DetailsActivityViewModel @Inject constructor(
   val onUserNotFound = SingleLiveEvent<Unit>()
   private val user = userRepository.getCurrentUserData()
 
-  fun loadPizzeriaDetails(pizzeria: String) = pizzaRepository.getPizzeria(pizzeria)
+  fun loadPizzeriaDetails(pizzeria: String) {
+    pizzaRepository.getPizzeria(pizzeria)
+  }
 
   fun saveRating(
     pizzeria: String,
