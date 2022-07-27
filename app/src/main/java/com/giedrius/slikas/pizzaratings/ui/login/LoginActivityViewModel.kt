@@ -10,8 +10,8 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginActivityViewModel @Inject constructor(
   val firebaseAuth: FirebaseAuth,
-  val pizzaRepository: PizzaRepository,
-  val userRepository: UserRepository
+  private val pizzaRepository: PizzaRepository,
+  private val userRepository: UserRepository
 ) : ViewModel() {
 
   fun saveUser() = pizzaRepository.saveUser()
