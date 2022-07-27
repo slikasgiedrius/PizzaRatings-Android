@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.giedrius.slikas.pizzaratings.data.model.UserData
+import com.giedrius.slikas.pizzaratings.utils.mocks.getMockedUserData
 import com.google.firebase.auth.FirebaseUser
 
 @Composable
@@ -72,13 +73,7 @@ fun ProfileFragmentContent(
 @Composable
 fun  PreviewProfileFragmentContent() {
   ProfileFragmentContent(
-    userData = UserData(
-      uid = "1230",
-      name = "Giedrius",
-      email = "slikas.giedrius@gmail.com",
-      phoneNumber = "+37063771062",
-      photoUrl = Uri.EMPTY
-    ),
+    userData = getMockedUserData(),
     logout = {}
   )
 }
