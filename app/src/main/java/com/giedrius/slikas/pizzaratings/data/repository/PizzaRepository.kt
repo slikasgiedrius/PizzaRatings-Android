@@ -110,6 +110,17 @@ class PizzaRepository @Inject constructor(
     firestore.collection(DB_USERS).document(userId).update(FIELD_FAVOURITES, FieldValue.arrayUnion(pizzeriaName))
   }
 
+  fun removeFavourite(
+    userId: String,
+    pizzeriaName: String
+  ) {
+    //Remove users id from Pizzeria profile
+    firestore.collection(DB_RESTAURANTS).document(pizzeriaName).update(FIELD_FAVOURITED, FieldValue.arrayRemove(userId))
+
+    //Remove favourite pizzeria name from Users DB
+    firestore.collection(DB_USERS).document(userId).update(FIELD_FAVOURITES, FieldValue.arrayRemove(pizzeriaName))
+  }
+
   fun saveUser(userData: UserData) {
     if (userData.uid != null) {
       val data = hashMapOf(

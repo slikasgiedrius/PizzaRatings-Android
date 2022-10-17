@@ -28,7 +28,8 @@ fun DetailsActivityContent(
   pizzeriaDetails: Rating?,
   onRatingClicked: (Int) -> Unit,
   userData: UserData,
-  onMakeFavouriteClicked: () -> Unit
+  onMakeFavouriteClicked: () -> Unit,
+  onRemoveFavouriteClicked: () -> Unit
 ) {
   if (pizzeriaDetails != null) {
     Column {
@@ -52,25 +53,29 @@ fun DetailsActivityContent(
       )
 
       userData.let {
-        val isFavouritedByMe = it.uid != null && pizzeriaDetails.favourited.contains(it.uid)
+        val isFavourited = it.uid != null && pizzeriaDetails.favourited.contains(it.uid)
 
-        if (isFavouritedByMe) {
+        if (isFavourited) {
           Icon(
             Icons.Filled.Favorite,
             contentDescription = "Favorite",
             modifier = Modifier.size(ButtonDefaults.IconSize)
           )
+
+          Button(onClick = { onRemoveFavouriteClicked() }) {
+            Text(text = "Remove favourite")
+          }
         } else {
           Icon(
             Icons.TwoTone.Favorite,
             contentDescription = "Favorite",
             modifier = Modifier.size(ButtonDefaults.IconSize)
           )
-        }
-      }
 
-      Button(onClick = { onMakeFavouriteClicked() }) {
-        Text(text = "Make favourite")
+          Button(onClick = { onMakeFavouriteClicked() }) {
+            Text(text = "Make favourite")
+          }
+        }
       }
     }
   } else {
@@ -85,6 +90,7 @@ fun PreviewDetailsActivityContent() {
     pizzeriaDetails = getMockedRatings().first(),
     onRatingClicked = {},
     userData = getMockedUserData(),
-    onMakeFavouriteClicked = {}
+    onMakeFavouriteClicked = {},
+    onRemoveFavouriteClicked = {}
   )
 }

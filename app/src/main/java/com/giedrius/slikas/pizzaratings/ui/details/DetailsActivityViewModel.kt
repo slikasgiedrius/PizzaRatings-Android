@@ -41,4 +41,17 @@ class DetailsActivityViewModel @Inject constructor(
       onUserNotFound.call()
     }
   }
+
+  fun removeFavourite() {
+    if (user.uid != null) {
+      pizzaRepository.onPizzeriaDetailsDownloaded.value?.let {
+        pizzaRepository.removeFavourite(
+          userId = user.uid,
+          pizzeriaName = it.name
+        )
+      }
+    } else {
+      onUserNotFound.call()
+    }
+  }
 }
