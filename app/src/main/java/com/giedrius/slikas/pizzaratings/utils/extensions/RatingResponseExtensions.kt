@@ -1,7 +1,7 @@
 package com.giedrius.slikas.pizzaratings.utils.extensions
 
-import com.giedrius.slikas.pizzaratings.data.model.Rating
-import com.giedrius.slikas.pizzaratings.data.model.RatingResponse
+import com.giedrius.slikas.shared.data.Rating
+import com.giedrius.slikas.shared.utils.mocks.RatingResponse
 import com.giedrius.slikas.pizzaratings.utils.checkForIncompatibleTypes
 
 @Suppress("UNCHECKED_CAST")

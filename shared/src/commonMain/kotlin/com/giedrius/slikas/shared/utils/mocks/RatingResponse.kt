@@ -1,4 +1,4 @@
-package com.giedrius.slikas.pizzaratings.data.model
+package com.giedrius.slikas.shared.utils.mocks
 
 /*
 Is being converted to Rating to eliminate firebase firestore limitations

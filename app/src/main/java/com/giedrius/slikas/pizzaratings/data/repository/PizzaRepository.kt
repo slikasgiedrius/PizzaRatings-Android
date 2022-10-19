@@ -3,8 +3,8 @@ package com.giedrius.slikas.pizzaratings.data.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.giedrius.slikas.pizzaratings.data.model.Rating
-import com.giedrius.slikas.pizzaratings.data.model.RatingResponse
+import com.giedrius.slikas.shared.data.Rating
+import com.giedrius.slikas.shared.utils.mocks.RatingResponse
 import com.giedrius.slikas.pizzaratings.data.model.UserData
 import com.giedrius.slikas.pizzaratings.utils.extensions.toRating
 import com.google.firebase.firestore.FieldValue

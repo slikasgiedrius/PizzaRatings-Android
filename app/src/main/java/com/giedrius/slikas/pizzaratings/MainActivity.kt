@@ -1,6 +1,7 @@
 package com.giedrius.slikas.pizzaratings
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewTreeLifecycleOwner
@@ -10,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.giedrius.slikas.pizzaratings.databinding.ActivityMainBinding
 import com.giedrius.slikas.pizzaratings.ui.home.HomeFragmentViewModel
+import com.giedrius.slikas.shared.Greeting
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,6 +27,8 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     ViewTreeLifecycleOwner.set(window.decorView, this)
+
+    Log.i("Login Activity", "Hello from shared module: " + (Greeting().greeting()))
 
     initBottomNavigation()
     downloadPizzerias()

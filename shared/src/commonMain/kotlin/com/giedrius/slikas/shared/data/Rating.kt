@@ -1,4 +1,4 @@
-package com.giedrius.slikas.pizzaratings.data.model
+package com.giedrius.slikas.shared.data
 
 data class Rating(
   val id: String,

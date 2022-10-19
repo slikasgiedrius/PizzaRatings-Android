@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Pizza Ratings"
 include ':app'
+include ':shared'

@@ -12,8 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.giedrius.slikas.pizzaratings.data.model.Rating
-import com.giedrius.slikas.pizzaratings.utils.mocks.getMockedRatings
+import com.giedrius.slikas.shared.data.Rating
+import com.giedrius.slikas.shared.utils.mocks.getMockedRatings
 
 @Composable
 fun ListItem(

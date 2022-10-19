@@ -4,8 +4,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.giedrius.slikas.pizzaratings.data.model.Rating
-import com.giedrius.slikas.pizzaratings.utils.mocks.getMockedRatings
+import com.giedrius.slikas.shared.data.Rating
+import com.giedrius.slikas.shared.utils.mocks.getMockedRatings
 
 @Composable
 fun RatingsList(

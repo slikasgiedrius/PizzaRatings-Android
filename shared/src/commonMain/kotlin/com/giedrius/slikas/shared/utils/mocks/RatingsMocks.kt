@@ -1,6 +1,6 @@
-package com.giedrius.slikas.pizzaratings.utils.mocks
+package com.giedrius.slikas.shared.utils.mocks
 
-import com.giedrius.slikas.pizzaratings.data.model.Rating
+import com.giedrius.slikas.shared.data.Rating
 
 fun getMockedRatings(): List<Rating> = listOf(
   Rating(

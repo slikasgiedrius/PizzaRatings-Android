@@ -10,17 +10,15 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.twotone.Favorite
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.giedrius.slikas.pizzaratings.compose.RatingSelector
-import com.giedrius.slikas.pizzaratings.data.model.Rating
+import com.giedrius.slikas.shared.data.Rating
 import com.giedrius.slikas.pizzaratings.data.model.UserData
-import com.giedrius.slikas.pizzaratings.utils.mocks.getMockedRatings
+import com.giedrius.slikas.shared.utils.mocks.getMockedRatings
 import com.giedrius.slikas.pizzaratings.utils.mocks.getMockedUserData
 
 @Composable

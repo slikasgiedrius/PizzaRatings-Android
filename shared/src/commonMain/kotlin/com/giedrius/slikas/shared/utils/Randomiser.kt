@@ -1,4 +1,4 @@
-package com.giedrius.slikas.pizzaratings.utils
+package com.giedrius.slikas.shared.utils
 
 import kotlin.random.Random
 
