@@ -5,10 +5,10 @@ import com.giedrius.slikas.pizzaratings.data.model.UserData
 
 fun getMockedUserData(): UserData {
   return UserData(
-    uid = "1230",
-    name = "Giedrius",
-    email = "slikas.giedrius@gmail.com",
-    phoneNumber = "+37063771062",
+    uid = "7773",
+    name = "Miglužė",
+    email = "tst@gmail.com",
+    phoneNumber = "+37063771063",
     photoUrl = Uri.parse("https://drive.google.com/thumbnail?id=1jgJb_Ev4QeAbYTv-q2lnbXW7SieLAqNq")
   )
 }
